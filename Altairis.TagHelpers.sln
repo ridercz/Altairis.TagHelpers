@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Altairis.TagHelpers", "Altairis.TagHelpers\Altairis.TagHelpers.csproj", "{0A708823-CFFC-45A3-8086-F4B759EEE2D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Altairis.TagHelpers.DemoApp", "Altairis.TagHelpers.DemoApp\Altairis.TagHelpers.DemoApp.csproj", "{CC2FE983-32E8-4E51-A56C-C81F0897DD72}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0A708823-CFFC-45A3-8086-F4B759EEE2D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A708823-CFFC-45A3-8086-F4B759EEE2D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A708823-CFFC-45A3-8086-F4B759EEE2D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A708823-CFFC-45A3-8086-F4B759EEE2D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC2FE983-32E8-4E51-A56C-C81F0897DD72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC2FE983-32E8-4E51-A56C-C81F0897DD72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC2FE983-32E8-4E51-A56C-C81F0897DD72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC2FE983-32E8-4E51-A56C-C81F0897DD72}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A9B8BC4A-8332-4872-A5CC-F42417AE69CA}
+	EndGlobalSection
+EndGlobal

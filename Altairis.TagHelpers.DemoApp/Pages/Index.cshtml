@@ -1,0 +1,33 @@
+﻿@page
+@addTagHelper *, Altairis.TagHelpers
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style>
+        body {
+            font-family: Consolas, Courier New, Courier, monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>Altairis Tag Helpers Demo</h1>
+
+    <h2>TimeTagHelper</h2>
+    <ul>
+        @for (int i = -3; i <= 3; i++) {
+            var dt = DateTime.Now.AddDays(i);
+            <li><time value="dt"></time></li>
+        }
+    </ul>
+
+    <h2>TrimLengthTagHelper</h2>
+    <p trim-length="20">The quick brown fox jumps over the lazy dog.</p>
+    <p trim-length="20" ellipsis-text="...">The quick brown fox jumps over the lazy dog.</p>
+
+    <h2>VisibleTagHelper</h2>
+    <p visible="true">Now you see me...</p>
+    <p visible="false">...now you odn't.</p>
+</body>
+</html>
