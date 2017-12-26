@@ -15,28 +15,6 @@
 <body>
     <h1>Altairis Tag Helpers Demo</h1>
 
-    <h2>TimeTagHelper</h2>
-    <ul>
-        @for (int i = -3; i <= 3; i++) {
-            var dt = DateTime.Now.AddDays(i);
-            <li><time value="dt"></time></li>
-        }
-    </ul>
-
-    <h2>TrimLengthTagHelper</h2>
-    <p trim-length="20">The quick brown fox jumps over the lazy dog.</p>
-    <p trim-length="20" ellipsis-text="...">The quick brown fox jumps over the lazy dog.</p>
-
-    <h2>VisibleTagHelper</h2>
-    <p visible="true">Now you see me...</p>
-    <p visible="false">...now you odn't.</p>
-
-    <h2>RolesTagHelper</h2>
-    <p include-roles="*">Only authenticated users see this.</p>
-    <p exclude-roles="?">Only authenticated users see this.</p>
-    <p include-roles="?">Only anonymous users see this.</p>
-    <p exclude-roles="*">Only anonymous users see this.</p>
-
     <h2>GravatarTagHelper</h2>
     <p>Existing user:</p>
     <p>
@@ -57,5 +35,28 @@
         <gravatar email="example@example.com" title="Wavatar" default-image="@GravatarDefaultImage.Wavatar" />
         <gravatar email="example@example.com" title="Custom" default-image="https://raw.githubusercontent.com/ridercz/Altairis.TagHelpers/master/NuGet-64x64.png" />
     </p>
+
+    <h2>RolesTagHelper</h2>
+    <p include-roles="*">Only authenticated users see this.</p>
+    <p exclude-roles="?">Only authenticated users see this.</p>
+    <p include-roles="?">Only anonymous users see this.</p>
+    <p exclude-roles="*">Only anonymous users see this.</p>
+
+    <h2>TimeTagHelper</h2>
+    <ul>
+        @for (int i = -3; i <= 3; i++) {
+            var dt = DateTime.Now.AddDays(i);
+            <li><time value="dt"></time></li>
+        }
+    </ul>
+
+    <h2>TrimLengthTagHelper</h2>
+    <p trim-length="20">The quick brown fox jumps over the lazy dog.</p>
+    <p trim-length="20" ellipsis-text="...">The quick brown fox jumps over the lazy dog.</p>
+
+    <h2>VisibleTagHelper</h2>
+    <p visible="true">Now you see me...</p>
+    <p visible="false">...now you odn't.</p>
+
 </body>
 </html>
