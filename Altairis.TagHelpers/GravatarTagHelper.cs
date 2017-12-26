@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace Altairis.TagHelpers {
@@ -65,14 +62,14 @@ namespace Altairis.TagHelpers {
 
     public static class GravatarDefaultImage {
 
-        public const string NotFound = "404";
-        public const string MysteryMan = "mm";
+        public const string Blank = "blank";
         public const string IdentIcon = "identicon";
         public const string MonsterId = "monsterid";
-        public const string Wavatar = "wavatar";
+        public const string MysteryMan = "mm";
+        public const string NotFound = "404";
         public const string Retro = "retro";
         public const string RoboHash = "robohash";
-        public const string Blank = "blank";
+        public const string Wavatar = "wavatar";
 
     }
 
