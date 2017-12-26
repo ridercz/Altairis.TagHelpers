@@ -29,5 +29,11 @@
     <h2>VisibleTagHelper</h2>
     <p visible="true">Now you see me...</p>
     <p visible="false">...now you odn't.</p>
+
+    <h2>RolesTagHelper</h2>
+    <p include-roles="*">Only authenticated users see this.</p>
+    <p exclude-roles="?">Only authenticated users see this.</p>
+    <p include-roles="?">Only anonymous users see this.</p>
+    <p exclude-roles="*">Only anonymous users see this.</p>
 </body>
 </html>
