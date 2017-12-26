@@ -1,4 +1,5 @@
 ﻿@page
+@using Altairis.TagHelpers
 @addTagHelper *, Altairis.TagHelpers
 
 <!DOCTYPE html>
@@ -35,5 +36,26 @@
     <p exclude-roles="?">Only authenticated users see this.</p>
     <p include-roles="?">Only anonymous users see this.</p>
     <p exclude-roles="*">Only anonymous users see this.</p>
+
+    <h2>GravatarTagHelper</h2>
+    <p>Existing user:</p>
+    <p>
+        <gravatar email="michal.valasek@altairis.cz" size="10" />
+        <gravatar email="michal.valasek@altairis.cz" size="20" />
+        <gravatar email="michal.valasek@altairis.cz" size="40" />
+        <gravatar email="michal.valasek@altairis.cz" />
+    </p>
+    <p>Nonexisting user:</p>
+    <p>
+        <gravatar email="example@example.com" title="Default" />
+        <gravatar email="example@example.com" title="Blank (border added for clarity)" default-image="@GravatarDefaultImage.Blank" style="border: 1px solid black" />
+        <gravatar email="example@example.com" title="IdentIcon" default-image="@GravatarDefaultImage.IdentIcon" />
+        <gravatar email="example@example.com" title="MonsterId" default-image="@GravatarDefaultImage.MonsterId" />
+        <gravatar email="example@example.com" title="MysteryMan" default-image="@GravatarDefaultImage.MysteryMan" />
+        <gravatar email="example@example.com" title="Retro" default-image="@GravatarDefaultImage.Retro" />
+        <gravatar email="example@example.com" title="RoboHash" default-image="@GravatarDefaultImage.RoboHash" />
+        <gravatar email="example@example.com" title="Wavatar" default-image="@GravatarDefaultImage.Wavatar" />
+        <gravatar email="example@example.com" title="Custom" default-image="https://raw.githubusercontent.com/ridercz/Altairis.TagHelpers/master/NuGet-64x64.png" />
+    </p>
 </body>
 </html>
