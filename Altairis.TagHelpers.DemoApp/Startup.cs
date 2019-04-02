@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Altairis.TagHelpers.DemoApp {
     public class Startup {
         public void ConfigureServices(IServiceCollection services) {
+            services.AddHttpContextAccessor();
             services.AddMvc();
             //services.Configure<TimeTagHelperOptions>(options => {
             //    options.GeneralDateFormatter = d => string.Format("{0:d}", d);
