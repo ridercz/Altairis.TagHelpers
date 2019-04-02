@@ -9,12 +9,11 @@ namespace Altairis.TagHelpers {
     [HtmlTargetElement(ParentTag = null, Attributes = "include-roles")]
     [HtmlTargetElement(ParentTag = null, Attributes = "exclude-roles")]
     public class RolesTagHelper : TagHelper {
-        private readonly IHttpContextAccessor _contextAccessor;
+        private readonly IHttpContextAccessor contextAccessor;
 
         public RolesTagHelper(IHttpContextAccessor contextAccessor) {
-            this._contextAccessor = contextAccessor;
+            this.contextAccessor = contextAccessor;
         }
-
 
         public string ExcludeRoles { get; set; }
 
@@ -24,13 +23,13 @@ namespace Altairis.TagHelpers {
             base.Process(context, output);
 
             // Process excluded roles
-            if(!string.IsNullOrWhiteSpace(this.ExcludeRoles) && MatchRoles(_contextAccessor.HttpContext.User, this.ExcludeRoles)) {
+            if (!string.IsNullOrWhiteSpace(this.ExcludeRoles) && MatchRoles(this.contextAccessor.HttpContext.User, this.ExcludeRoles)) {
                 output.SuppressOutput();
                 return;
             }
 
             // Process included roles
-            if (!string.IsNullOrWhiteSpace(this.IncludeRoles) && !MatchRoles(_contextAccessor.HttpContext.User, this.IncludeRoles)) {
+            if (!string.IsNullOrWhiteSpace(this.IncludeRoles) && !MatchRoles(this.contextAccessor.HttpContext.User, this.IncludeRoles)) {
                 output.SuppressOutput();
                 return;
             }

@@ -18,7 +18,7 @@ namespace Altairis.TagHelpers {
 
             if (content.Length > this.TrimLength) {
                 if (context.AllAttributes["title"] == null) output.Attributes.Add("title", content);
-                output.Content.SetHtmlContent(WebUtility.HtmlEncode(content.Substring(0, this.TrimLength).TrimEnd(' ', '.', ',', '-', '(', ')')) + EllipsisText);
+                output.Content.SetHtmlContent(WebUtility.HtmlEncode(content.Substring(0, this.TrimLength).TrimEnd(' ', '.', ',', '-', '(', ')')) + this.EllipsisText);
             }
         }
 
