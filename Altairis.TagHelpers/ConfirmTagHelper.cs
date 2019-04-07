@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Razor.TagHelpers;
+﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace Altairis.TagHelpers {
     [HtmlTargetElement("a", Attributes = "href")]
@@ -18,7 +13,7 @@ namespace Altairis.TagHelpers {
             base.Process(context, output);
 
             if (!string.IsNullOrWhiteSpace(this.ConfirmMessage)) {
-                output.Attributes.Add("onclick", $"return window.confirm('{this.ConfirmMessage}');");
+                output.Attributes.Add("onclick", $"return window.confirm('{this.ConfirmMessage.Replace("'", "\\'")}');");
             }
         }
     }
