@@ -4,7 +4,6 @@ using System.Text;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace Altairis.TagHelpers {
-
     public class GravatarTagHelper : TagHelper {
         private const int DEFAULT_SIZE = 80;
         private const GravatarRating DEFAULT_RATING = GravatarRating.G;
@@ -31,7 +30,6 @@ namespace Altairis.TagHelpers {
 
             if (context.AllAttributes["alt"] == null) output.Attributes.Add("alt", "Gravatar");
         }
-
 
         private string GetGravatarUrl() {
             // Construct base URL
