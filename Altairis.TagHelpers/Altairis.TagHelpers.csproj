@@ -15,7 +15,7 @@
     <PackageTags />
     <PackageIconUrl>https://raw.githubusercontent.com/ridercz/Altairis.TagHelpers/master/NuGet-64x64.png</PackageIconUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>1.2.0</Version>
+    <Version>1.2.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
