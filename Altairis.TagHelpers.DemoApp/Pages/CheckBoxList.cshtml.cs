@@ -21,9 +21,9 @@ namespace Altairis.TagHelpers.DemoApp.Pages {
         public string Message { get; set; }
 
         public IEnumerable<SelectListItem> ListValues => new List<SelectListItem>(new[] {
-            new SelectListItem("Item 1", "1", this.Input.SelectedValues.Contains("1")),
-            new SelectListItem("Item 2", "2", this.Input.SelectedValues.Contains("2")) { Disabled = true },
-            new SelectListItem("Item 3", "3", this.Input.SelectedValues.Contains("3")),
+            new SelectListItem("Item 1", "1"),
+            new SelectListItem("Item 2", "2"),
+            new SelectListItem("Item 3", "3"),
         });
 
         public void OnPost() {

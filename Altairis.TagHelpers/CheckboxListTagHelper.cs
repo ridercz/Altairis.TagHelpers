@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,6 +31,14 @@ namespace Altairis.TagHelpers {
             for (var i = 0; i < items.Count; i++) {
                 var fieldName = this.For.Name;
                 var fieldId = $"{this.For.Name.Replace('.', '_')}[{i}]";
+                var fieldSelected = items[i].Selected;
+
+                // Check if value is selected
+                if (!fieldSelected && this.For.Model != null) {
+                    fieldSelected = this.For.Model is IEnumerable<object> enumerableModel
+                        ? enumerableModel.Any(x => items[i].Value.Equals(x.ToString(), StringComparison.OrdinalIgnoreCase))
+                        : items[i].Value.Equals(this.For.Model.ToString(), StringComparison.OrdinalIgnoreCase);
+                }
 
                 // Create checkbox
                 var input = new TagBuilder("input") {
@@ -39,7 +48,7 @@ namespace Altairis.TagHelpers {
                 input.Attributes.Add("name", fieldName);
                 input.Attributes.Add("id", fieldId);
                 input.Attributes.Add("value", items[i].Value);
-                if (items[i].Selected) input.Attributes.Add("checked", "checked");
+                if (fieldSelected) input.Attributes.Add("checked", "checked");
                 if (items[i].Disabled) input.Attributes.Add("disabled", "disabled");
 
                 // Create label
