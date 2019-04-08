@@ -25,6 +25,7 @@ namespace Altairis.TagHelpers {
             base.Process(context, output);
 
             output.TagName = "ul";
+            output.TagMode = TagMode.StartTagAndEndTag;
             if (!string.IsNullOrWhiteSpace(this.Class)) output.Attributes.Add("class", this.Class);
 
             var items = new List<SelectListItem>(this.Items);
