@@ -18,6 +18,8 @@ namespace Altairis.TagHelpers {
 
         public string Class { get; set; }
 
+        public CheckboxListControlType ControlType { get; set; } = CheckboxListControlType.CheckBox;
+
         public override void Process(TagHelperContext context, TagHelperOutput output) {
             base.Process(context, output);
 
@@ -33,7 +35,7 @@ namespace Altairis.TagHelpers {
                 var input = new TagBuilder("input") {
                     TagRenderMode = TagRenderMode.SelfClosing
                 };
-                input.Attributes.Add("type", "checkbox");
+                input.Attributes.Add("type", this.ControlType == CheckboxListControlType.CheckBox ? "checkbox" : "radio");
                 input.Attributes.Add("name", fieldName);
                 input.Attributes.Add("id", fieldId);
                 input.Attributes.Add("value", items[i].Value);
@@ -53,4 +55,10 @@ namespace Altairis.TagHelpers {
             }
         }
     }
+
+    public enum CheckboxListControlType {
+        CheckBox,
+        RadioButton
+    }
+
 }
