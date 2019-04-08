@@ -14,20 +14,28 @@ namespace Altairis.TagHelpers.DemoApp.Pages {
 
         public class InputModel {
 
-            public ICollection<string> SelectedValues { get; set; } = new HashSet<string>();
+            public ICollection<string> CheckboxSelectedValues { get; set; }
+
+            public string RadioSelectedValue { get; set; }
 
         }
 
         public string Message { get; set; }
 
-        public IEnumerable<SelectListItem> ListValues => new List<SelectListItem>(new[] {
+        public IEnumerable<SelectListItem> CheckboxListItems => new List<SelectListItem>(new[] {
             new SelectListItem("Item 1", "1"),
             new SelectListItem("Item 2", "2"),
             new SelectListItem("Item 3", "3"),
         });
 
+        public IEnumerable<SelectListItem> RadioListItems => new List<SelectListItem>(new[] {
+            new SelectListItem("Item A", "A"),
+            new SelectListItem("Item B", "B"),
+            new SelectListItem("Item C", "C"),
+        });
+
         public void OnPost() {
-            this.Message = "Selected item IDs: " + string.Join(", ", this.Input.SelectedValues);
+            this.Message = $"Selected checkbox item IDs: {string.Join(", ", this.Input.CheckboxSelectedValues)}, selected radio item ID: {this.Input.RadioSelectedValue}";
         }
     }
 }
