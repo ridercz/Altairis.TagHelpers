@@ -14,7 +14,7 @@ namespace Altairis.TagHelpers.DemoApp.Pages {
 
         public class InputModel {
 
-            public ICollection<string> CheckboxSelectedValues { get; set; }
+            public ICollection<int> CheckboxSelectedValues { get; set; };
 
             public string RadioSelectedValue { get; set; }
 
