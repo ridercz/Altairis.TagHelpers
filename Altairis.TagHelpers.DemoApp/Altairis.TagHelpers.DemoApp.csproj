@@ -2,6 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
+    <Version>$([System.DateTime]::UtcNow.ToString('yyyy.MM.dd.HHmm'))</Version>
+    <AssemblyVersion>$([System.DateTime]::UtcNow.ToString('yyyy.MM.dd.HHmm'))</AssemblyVersion>
+    <FileVersion>$([System.DateTime]::UtcNow.ToString('yyyy.MM.dd.HHmm'))</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
