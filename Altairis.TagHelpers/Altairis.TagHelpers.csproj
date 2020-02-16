@@ -14,12 +14,13 @@
     <PackageProjectUrl>https://github.com/ridercz/Altairis.TagHelpers</PackageProjectUrl>
     <PackageIconUrl></PackageIconUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>1.5.0</Version>
+    <Version>1.5.1</Version>
     <PackageIcon>NuGet-64x64.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.RazorPages" Version="2.2.5" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Runtime" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="2.2.0" />

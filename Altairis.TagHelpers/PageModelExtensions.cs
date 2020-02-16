@@ -3,7 +3,7 @@ using System.ComponentModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Altairis.TagHelpers.DemoApp {
+namespace Altairis.TagHelpers {
     public static class PageModelExtensions {
         public static RedirectToPageResult AmbientRedirectToPage(this PageModel page) => page.AmbientRedirectToPage(pageName: null, pageHandler: null, routeValues: null, fragment: null);
 
