@@ -47,7 +47,9 @@
             var dt = DateTime.Now.AddDays(i);
             <li><time value="dt"></time></li>
         }
+        <li><time value="DateTime.Now" today-format="{0:s}"></time></li>
     </ul>
+
 
     <h2>TrimLengthTagHelper</h2>
     <p trim-length="20">The quick brown fox jumps over the lazy dog.</p>

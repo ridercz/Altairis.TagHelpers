@@ -13,14 +13,28 @@ namespace Altairis.TagHelpers {
 
         public DateTime? Value { get; set; }
 
+        public string TooltipFormat { get; set; }
+
+        public string GeneralFormat { get; set; }
+
+        public string TodayFormat { get; set; }
+
+        public string YesterdayFormat { get; set; }
+
+        public string TomorrowFormat { get; set; }
+
+        public string NullText { get; set; }
+
         public override void Process(TagHelperContext context, TagHelperOutput output) {
             base.Process(context, output);
 
             if (!this.Value.HasValue) {
                 // Value is not specified
-                output.Content.SetContent(this.options.NullDateFormatter());
-            }
-            else {
+                output.Content.SetContent(this.NullText ?? this.options.NullDateFormatter());
+            } else {
+                string formatValue(DateTime value, string fixedFormat, Func<DateTime, string> configuredFormat) => string.IsNullOrEmpty(fixedFormat) ? configuredFormat(value) : string.Format(fixedFormat, value);
+
+                // Value is specified
                 // Value is specified
                 var dateValue = this.Value.Value;
 
@@ -31,22 +45,19 @@ namespace Altairis.TagHelpers {
 
                 // Add title attribute if not already present
                 if (context.AllAttributes["title"] == null) {
-                    output.Attributes.Add("title", this.options.TooltipDateFormatter(dateValue));
+                    output.Attributes.Add("title", formatValue(dateValue, this.TooltipFormat, this.options.TooltipDateFormatter));
                 }
 
                 // Set content if not present
                 if (output.Content.IsEmptyOrWhiteSpace) {
                     if (dateValue.Date == DateTime.Today) {
-                        output.Content.SetContent(this.options.TodayDateFormatter(dateValue));
-                    }
-                    else if (dateValue.Date == DateTime.Today.AddDays(-1)) {
-                        output.Content.SetContent(this.options.YesterdayDateFormatter(dateValue));
-                    }
-                    else if (dateValue.Date == DateTime.Today.AddDays(1)) {
-                        output.Content.SetContent(this.options.TomorrowDateFormatter(dateValue));
-                    }
-                    else {
-                        output.Content.SetContent(this.options.GeneralDateFormatter(dateValue));
+                        output.Content.SetContent(formatValue(dateValue, this.TodayFormat, this.options.TodayDateFormatter));
+                    } else if (dateValue.Date == DateTime.Today.AddDays(-1)) {
+                        output.Content.SetContent(formatValue(dateValue, this.YesterdayFormat, this.options.YesterdayDateFormatter));
+                    } else if (dateValue.Date == DateTime.Today.AddDays(1)) {
+                        output.Content.SetContent(formatValue(dateValue, this.TomorrowFormat, this.options.TomorrowDateFormatter));
+                    } else {
+                        output.Content.SetContent(formatValue(dateValue, this.GeneralFormat, this.options.GeneralDateFormatter));
                     }
                 }
             }
