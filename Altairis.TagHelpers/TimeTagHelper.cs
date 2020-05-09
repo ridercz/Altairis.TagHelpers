@@ -1,4 +1,5 @@
 ﻿using System;
+using Altairis.Services.DateProvider;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.Extensions.Options;
 
@@ -6,9 +7,11 @@ namespace Altairis.TagHelpers {
     [HtmlTargetElement("time", Attributes = "value")]
     public class TimeTagHelper : TagHelper {
         private readonly TimeTagHelperOptions options;
+        private readonly IDateProvider dateProvider;
 
-        public TimeTagHelper(IOptions<TimeTagHelperOptions> optionsAccessor = null) {
+        public TimeTagHelper(IOptions<TimeTagHelperOptions> optionsAccessor = null, IDateProvider dateProvider = null) {
             this.options = optionsAccessor?.Value ?? new TimeTagHelperOptions();
+            this.dateProvider = dateProvider ?? new LocalDateProvider();
         }
 
         public DateTime? Value { get; set; }
@@ -50,11 +53,11 @@ namespace Altairis.TagHelpers {
 
                 // Set content if not present
                 if (output.Content.IsEmptyOrWhiteSpace) {
-                    if (dateValue.Date == DateTime.Today) {
+                    if (dateValue.Date == this.dateProvider.Today) {
                         output.Content.SetContent(formatValue(dateValue, this.TodayFormat, this.options.TodayDateFormatter));
-                    } else if (dateValue.Date == DateTime.Today.AddDays(-1)) {
+                    } else if (dateValue.Date == this.dateProvider.Today.AddDays(-1)) {
                         output.Content.SetContent(formatValue(dateValue, this.YesterdayFormat, this.options.YesterdayDateFormatter));
-                    } else if (dateValue.Date == DateTime.Today.AddDays(1)) {
+                    } else if (dateValue.Date == this.dateProvider.Today.AddDays(1)) {
                         output.Content.SetContent(formatValue(dateValue, this.TomorrowFormat, this.options.TomorrowDateFormatter));
                     } else {
                         output.Content.SetContent(formatValue(dateValue, this.GeneralFormat, this.options.GeneralDateFormatter));
