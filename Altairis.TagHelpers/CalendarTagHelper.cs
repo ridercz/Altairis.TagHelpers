@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Altairis.Services.DateProvider;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -60,7 +58,7 @@ namespace Altairis.TagHelpers {
             }
 
             // Add weeks
-            var d = realDateBegin;
+            var d = this.realDateBegin;
             while (d < this.realDateEnd) {
                 output.Content.AppendLine();
                 output.Content.AppendHtml(this.GenerateWeek(d));
@@ -72,7 +70,7 @@ namespace Altairis.TagHelpers {
 
         private IHtmlContent GenerateHeader() {
             var headerBuilder = new TagBuilder("header");
-            for (int i = 0; i < 7; i++) {
+            for (var i = 0; i < 7; i++) {
                 var d = this.realDateBegin.AddDays(i);
                 var dayName = this.DayNameStyle switch
                 {
@@ -126,7 +124,9 @@ namespace Altairis.TagHelpers {
         }
 
         private IHtmlContent GenerateDayEvents(DateTime day) {
-            static bool isBetween(DateTime value, DateTime begin, DateTime end) => value.Date >= begin.Date && value.Date <= end.Date;
+            static bool isBetween(DateTime value, DateTime begin, DateTime end) {
+                return value.Date >= begin.Date && value.Date <= end.Date;
+            }
 
             var dayEvents = this.Events
                 .Where(e => isBetween(day, e.DateBegin, e.DateEnd.HasValue ? e.DateEnd.Value : e.DateBegin))

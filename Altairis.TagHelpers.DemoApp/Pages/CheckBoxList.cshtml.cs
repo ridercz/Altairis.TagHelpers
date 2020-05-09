@@ -31,8 +31,6 @@ namespace Altairis.TagHelpers.DemoApp.Pages {
             new SelectListItem("Item C", "C"),
         });
 
-        public void OnPost() {
-            this.Message = $"Selected checkbox item IDs: {string.Join(", ", this.Input.CheckboxSelectedValues)}, selected radio item ID: {this.Input.RadioSelectedValue}";
-        }
+        public void OnPost() => this.Message = $"Selected checkbox item IDs: {string.Join(", ", this.Input.CheckboxSelectedValues)}, selected radio item ID: {this.Input.RadioSelectedValue}";
     }
 }

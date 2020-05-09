@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Razor.TagHelpers;
-using System;
+﻿using System;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace Altairis.TagHelpers {
     [HtmlTargetElement("assembly-version", TagStructure = TagStructure.NormalOrSelfClosing)]
