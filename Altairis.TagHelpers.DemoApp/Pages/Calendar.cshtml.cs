@@ -12,7 +12,7 @@ namespace Altairis.TagHelpers.DemoApp.Pages {
             // Full day events
             this.Events.Add(new CalendarEvent { DateBegin = new DateTime(2020, 4, 3), IsFullDay = true, Name = "Full Day Event", CssClass = "red", Description = "Toto je popis" });
             this.Events.Add(new CalendarEvent { DateBegin = new DateTime(2020, 4, 10), IsFullDay = true, Name = "Full Day Event #1", CssClass = "blue" });
-            this.Events.Add(new CalendarEvent { DateBegin = new DateTime(2020, 4, 10), IsFullDay = true, Name = "Full Day Event #2" });
+            this.Events.Add(new CalendarEvent { DateBegin = new DateTime(2020, 4, 10), IsFullDay = true, Name = "Full Day Event #2", Href = "https://www.rider.cz" });
             this.Events.Add(new CalendarEvent { DateBegin = new DateTime(2020, 4, 12), DateEnd = new DateTime(2020, 4, 15), IsFullDay = true, Name = "Multi day full day" });
 
             // Non-FDE

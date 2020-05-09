@@ -149,7 +149,6 @@ namespace Altairis.TagHelpers {
 
                 if (e.IsFullDay) {
                     eventBuilder.AddCssClass("full-day");
-                    eventBuilder.InnerHtml.AppendHtml(e.Name);
                 } else {
                     if (day.Date == e.DateBegin.Date) {
                         var timeBeginBuilder = new TagBuilder("time");
@@ -171,12 +170,12 @@ namespace Altairis.TagHelpers {
                             eventBuilder.InnerHtml.AppendHtml(timeBeginBuilder);
                         }
                     }
-
-                    var liContent = new TagBuilder(string.IsNullOrEmpty(e.Href) ? "span" : "a");
-                    if (!string.IsNullOrEmpty(e.Href)) liContent.Attributes.Add("href", e.Href);
-                    liContent.InnerHtml.AppendHtml(e.Name);
-                    eventBuilder.InnerHtml.AppendHtml(liContent);
                 }
+
+                var liContent = new TagBuilder(string.IsNullOrEmpty(e.Href) ? "span" : "a");
+                if (!string.IsNullOrEmpty(e.Href)) liContent.Attributes.Add("href", e.Href);
+                liContent.InnerHtml.AppendHtml(e.Name);
+                eventBuilder.InnerHtml.AppendHtml(liContent);
                 eventListBuilder.InnerHtml.AppendHtml(eventBuilder);
             }
 

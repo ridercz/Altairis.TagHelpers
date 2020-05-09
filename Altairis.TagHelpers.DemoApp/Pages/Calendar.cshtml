@@ -7,9 +7,13 @@
     <link rel="stylesheet" href="~/Styles/calendar.css" />
 </head>
 <body>
-    <calendar date-begin="new DateTime(2020,4,1)"
-              date-end="new DateTime(2020,4,30)"
-              events="this.Model.Events" selected-days="this.Model.SelectedDays"
-              class="calendar"></calendar>
+    <calendar class="calendar"
+              date-begin="new DateTime(2020, 4, 1)"
+              date-end="new DateTime(2020, 4, 30)"
+              day-name-style="Full"
+              events="this.Model.Events"
+              general-date-format="d."
+              new-month-date-format="d. MMMM"
+              selected-days="this.Model.SelectedDays"></calendar>
 </body>
 </html>
