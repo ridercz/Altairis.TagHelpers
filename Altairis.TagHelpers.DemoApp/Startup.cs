@@ -18,6 +18,7 @@ namespace Altairis.TagHelpers.DemoApp {
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStaticFiles();
             app.UseRouting();
             app.UseEndpoints(endpoints => {
                 endpoints.MapRazorPages();
