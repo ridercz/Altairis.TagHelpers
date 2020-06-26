@@ -14,7 +14,7 @@
     <PackageProjectUrl>https://github.com/ridercz/Altairis.TagHelpers</PackageProjectUrl>
     <PackageIconUrl></PackageIconUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>1.8.0</Version>
+    <Version>1.8.1</Version>
     <PackageIcon>NuGet-64x64.png</PackageIcon>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>

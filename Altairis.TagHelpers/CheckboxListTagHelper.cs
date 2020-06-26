@@ -34,9 +34,13 @@ namespace Altairis.TagHelpers {
 
                 // Check if value is selected
                 if (!fieldSelected && this.For.Model != null) {
-                    fieldSelected = this.For.Model is IEnumerable enumerableModel
-                        ? enumerableModel.Cast<object>().Any(x => items[i].Value.Equals(x.ToString(), StringComparison.Ordinal))
-                        : items[i].Value.Equals(this.For.Model.ToString(), StringComparison.OrdinalIgnoreCase);
+                    if (this.For.Model is string) {
+                        fieldSelected = items[i].Value.Equals(this.For.Model as string, StringComparison.OrdinalIgnoreCase);
+                    } else {
+                        fieldSelected = this.For.Model is IEnumerable enumerableModel
+                            ? enumerableModel.Cast<object>().Any(x => items[i].Value.Equals(x.ToString(), StringComparison.Ordinal))
+                            : items[i].Value.Equals(this.For.Model.ToString(), StringComparison.OrdinalIgnoreCase);
+                    }
                 }
 
                 // Create checkbox

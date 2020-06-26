@@ -7,7 +7,7 @@ namespace Altairis.TagHelpers.DemoApp.Pages {
     public class CheckBoxListModel : PageModel {
 
         [BindProperty]
-        public InputModel Input { get; set; } = new InputModel();
+        public InputModel Input { get; set; } = new InputModel { RadioSelectedValue = "B", CheckboxSelectedValues = new[] { 2, 3 } };
 
         public class InputModel {
 
