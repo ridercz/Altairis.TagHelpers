@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -14,6 +15,8 @@ namespace Altairis.TagHelpers.DemoApp.Pages {
             public ICollection<int> CheckboxSelectedValues { get; set; }
 
             public string RadioSelectedValue { get; set; }
+
+            public DayOfWeek EnumSelectedValue { get; set; } = DayOfWeek.Wednesday;
 
         }
 
@@ -31,6 +34,6 @@ namespace Altairis.TagHelpers.DemoApp.Pages {
             new SelectListItem("Item C", "C"),
         });
 
-        public void OnPost() => this.Message = $"Selected checkbox item IDs: {string.Join(", ", this.Input.CheckboxSelectedValues)}, selected radio item ID: {this.Input.RadioSelectedValue}";
+        public void OnPost() => this.Message = $"Selected checkbox item IDs: {string.Join(", ", this.Input.CheckboxSelectedValues)}, selected radio item ID: {this.Input.RadioSelectedValue}, selected enum value: {this.Input.EnumSelectedValue}";
     }
 }

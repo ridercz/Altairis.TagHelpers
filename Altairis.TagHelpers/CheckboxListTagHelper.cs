@@ -34,12 +34,21 @@ namespace Altairis.TagHelpers {
 
                 // Check if value is selected
                 if (!fieldSelected && this.For.Model != null) {
-                    if (this.For.Model is string) {
-                        fieldSelected = items[i].Value.Equals(this.For.Model as string, StringComparison.OrdinalIgnoreCase);
-                    } else {
-                        fieldSelected = this.For.Model is IEnumerable enumerableModel
-                            ? enumerableModel.Cast<object>().Any(x => items[i].Value.Equals(x.ToString(), StringComparison.Ordinal))
-                            : items[i].Value.Equals(this.For.Model.ToString(), StringComparison.OrdinalIgnoreCase);
+                    switch (this.For.Model) {
+                        case string castedValue:
+                            fieldSelected = items[i].Value.Equals(castedValue, StringComparison.OrdinalIgnoreCase);
+                            break;
+                        case IEnumerable castedValue:
+                            fieldSelected = castedValue.Cast<object>().Any(x => items[i].Value.Equals(x.ToString(), StringComparison.Ordinal));
+                            break;
+                        case Enum castedValue:
+                            var underlyingType = Enum.GetUnderlyingType(castedValue.GetType());
+                            var modelValue = Convert.ChangeType(castedValue, underlyingType);
+                            fieldSelected = items[i].Value.Equals(modelValue.ToString(), StringComparison.OrdinalIgnoreCase);
+                            break;
+                        default:
+                            fieldSelected = items[i].Value.Equals(this.For.Model.ToString(), StringComparison.OrdinalIgnoreCase);
+                            break;
                     }
                 }
 

@@ -23,6 +23,9 @@
                 <td>
                     <checkbox-list asp-for="Input.RadioSelectedValue" asp-items="Model.RadioListItems" class="checkboxlist" control-type="RadioButton" />
                 </td>
+                <td>
+                    <checkbox-list asp-for="Input.EnumSelectedValue" asp-items="Html.GetEnumSelectList<DayOfWeek>()" class="checkboxlist" control-type="RadioButton"></checkbox-list>
+                </td>
             </tr>
         </table>
         <p>
