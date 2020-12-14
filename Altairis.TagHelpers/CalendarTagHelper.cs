@@ -137,6 +137,7 @@ namespace Altairis.TagHelpers {
             var eventListBuilder = new TagBuilder("ul");
             foreach (var e in dayEvents) {
                 var eventBuilder = new TagBuilder("li");
+                if (!string.IsNullOrEmpty(e.Id)) eventBuilder.Attributes.Add("id", e.Id);
                 if (!string.IsNullOrEmpty(e.Description)) eventBuilder.Attributes.Add("title", e.Description);
                 if (!string.IsNullOrEmpty(e.CssClass)) eventBuilder.AddCssClass(e.CssClass);
 
@@ -194,6 +195,8 @@ namespace Altairis.TagHelpers {
     }
 
     public class CalendarEvent {
+
+        public string Id { get; set; }
 
         public bool IsFullDay { get; set; }
 
