@@ -129,7 +129,7 @@ namespace Altairis.TagHelpers {
             }
 
             var dayEvents = this.Events
-                .Where(e => isBetween(day, e.DateBegin, e.DateEnd.HasValue ? e.DateEnd.Value : e.DateBegin))
+                .Where(e => isBetween(day, e.DateBegin, e.DateEnd ?? e.DateBegin))
                 .OrderBy(e => e.DateBegin).ThenBy(e => e.IsFullDay);
 
             if (!dayEvents.Any()) return null;
