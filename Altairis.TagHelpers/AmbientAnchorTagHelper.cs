@@ -36,7 +36,8 @@ namespace Altairis.TagHelpers {
 
             // Copy values from current route data
             foreach (var key in this.ViewContext.RouteData.Values.Keys) {
-                if (!this.RouteValues.ContainsKey(key)) this.RouteValues[key] = this.ViewContext.RouteData.Values[key].ToString();
+                var currentValue = this.ViewContext.RouteData.Values[key];
+                if (currentValue != null && !this.RouteValues.ContainsKey(key)) this.RouteValues[key] = currentValue.ToString();
             }
 
             // Process standard anchor helper
