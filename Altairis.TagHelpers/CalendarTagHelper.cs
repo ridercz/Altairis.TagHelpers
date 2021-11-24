@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace Altairis.TagHelpers {
+
     [HtmlTargetElement("calendar")]
     public class CalendarTagHelper : TagHelper {
         private readonly CultureInfo culture = CultureInfo.CurrentCulture;
@@ -72,8 +73,7 @@ namespace Altairis.TagHelpers {
             var headerBuilder = new TagBuilder("header");
             for (var i = 0; i < 7; i++) {
                 var d = this.realDateBegin.AddDays(i);
-                var dayName = this.DayNameStyle switch
-                {
+                var dayName = this.DayNameStyle switch {
                     DayNameStyle.Shortest => this.culture.DateTimeFormat.GetShortestDayName(d.DayOfWeek),
                     DayNameStyle.Abbreviated => this.culture.DateTimeFormat.GetAbbreviatedDayName(d.DayOfWeek),
                     _ => this.culture.DateTimeFormat.GetDayName(d.DayOfWeek)

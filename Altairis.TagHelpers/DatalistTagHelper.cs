@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Altairis.TagHelpers {
+
     [HtmlTargetElement("input", Attributes = "items")]
     public class DatalistTagHelper : TagHelper {
 

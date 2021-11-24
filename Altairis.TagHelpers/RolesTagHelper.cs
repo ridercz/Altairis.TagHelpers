@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace Altairis.TagHelpers {
 
-    [HtmlTargetElement(ParentTag = null, Attributes = "include-roles")]
-    [HtmlTargetElement(ParentTag = null, Attributes = "exclude-roles")]
+    [HtmlTargetElement("*", Attributes = "include-roles")]
+    [HtmlTargetElement("*", Attributes = "exclude-roles")]
     public class RolesTagHelper : TagHelper {
         private readonly IHttpContextAccessor contextAccessor;
 

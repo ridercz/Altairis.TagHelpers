@@ -2,7 +2,7 @@
 
 namespace Altairis.TagHelpers {
 
-    [HtmlTargetElement(Attributes = "visible")]
+    [HtmlTargetElement("*", Attributes = "visible")]
     public class VisibleTagHelper : TagHelper {
 
         public bool Visible { get; set; } = true;

@@ -4,6 +4,8 @@ using System.Text;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace Altairis.TagHelpers {
+
+    [HtmlTargetElement("gravatar")]
     public class GravatarTagHelper : TagHelper {
         private const int DEFAULT_SIZE = 80;
         private const GravatarRating DEFAULT_RATING = GravatarRating.G;

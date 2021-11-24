@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.Extensions.Options;
 
 namespace Altairis.TagHelpers {
+
     [HtmlTargetElement("time", Attributes = "value")]
     public class TimeTagHelper : TagHelper {
         private readonly TimeTagHelperOptions options;

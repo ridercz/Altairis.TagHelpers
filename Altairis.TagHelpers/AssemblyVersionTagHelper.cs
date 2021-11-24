@@ -2,7 +2,8 @@
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace Altairis.TagHelpers {
-    [HtmlTargetElement("assembly-version", TagStructure = TagStructure.NormalOrSelfClosing)]
+
+    [HtmlTargetElement("assembly-version")]
     public class AssemblyVersionTagHelper : TagHelper {
 
         public AssemblyVersionDisplayStyle Display { get; set; } = AssemblyVersionDisplayStyle.Revision;

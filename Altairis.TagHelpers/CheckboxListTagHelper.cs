@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace Altairis.TagHelpers {
+
+    [HtmlTargetElement("checkbox-list")]
     public class CheckboxListTagHelper : TagHelper {
 
         [HtmlAttributeName("asp-for")]

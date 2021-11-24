@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace Altairis.TagHelpers {
+
     [HtmlTargetElement("a")]
     [HtmlTargetElement("button")]
     [HtmlTargetElement("input", Attributes = "[type=submit]")]

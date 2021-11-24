@@ -3,7 +3,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace Altairis.TagHelpers {
-    [HtmlTargetElement(ParentTag = null, Attributes = "trim-length")]
+
+    [HtmlTargetElement("*", Attributes = "trim-length")]
     public class TrimLengthTagHelper : TagHelper {
 
         public int TrimLength { get; set; }
