@@ -1,14 +1,13 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
+﻿var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddRazorPages();
+//builder.Services.Configure<TimeTagHelperOptions>(options => {
+//    options.GeneralDateFormatter = d => string.Format("{0:d}", d);
+//});
 
-namespace Altairis.TagHelpers.DemoApp {
-    public class Program {
-        public static void Main(string[] args) => CreateHostBuilder(args).Build().Run();
+var app = builder.Build();
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder => {
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
-}
+app.UseStaticFiles();
+app.MapRazorPages();
+
+await app.RunAsync();
