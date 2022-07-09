@@ -1,39 +1,49 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Title>Altairis Tag Helpers</Title>
-    <Authors>Michal Altair Valášek</Authors>
-    <Company>Altairis, s. r. o.</Company>
-    <Product>Altairis Tag Helpers</Product>
-    <Description>Useful tag helpers for ASP.NET Core.</Description>
-    <Copyright>(c) Altairis, 2017-2021</Copyright>
-    <RepositoryUrl>https://github.com/ridercz/Altairis.TagHelpers.git</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <PackageProjectUrl>https://github.com/ridercz/Altairis.TagHelpers</PackageProjectUrl>
-    <PackageIconUrl></PackageIconUrl>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>1.10.0</Version>
-    <PackageIcon>NuGet-64x64.png</PackageIcon>
-    <LangVersion>latest</LangVersion>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Title>Altairis Tag Helpers</Title>
+		<Authors>Michal Altair Valášek</Authors>
+		<Company>Altairis, s. r. o.</Company>
+		<Product>Altairis Tag Helpers</Product>
+		<Description>Useful tag helpers for ASP.NET Core.</Description>
+		<Copyright>(c) Altairis, 2017-2021</Copyright>
+		<RepositoryUrl>https://github.com/ridercz/Altairis.TagHelpers.git</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageProjectUrl>https://github.com/ridercz/Altairis.TagHelpers</PackageProjectUrl>
+		<PackageIconUrl></PackageIconUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<Version>1.10.0</Version>
+		<PackageIcon>NuGet-64x64.png</PackageIcon>
+		<LangVersion>latest</LangVersion>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Altairis.Services.DateProvider" Version="1.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.RazorPages" Version="2.2.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Razor.Runtime" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<Using Include="Microsoft.AspNetCore.Mvc.TagHelpers" />
+		<Using Include="Microsoft.AspNetCore.Mvc.ViewFeatures" />
+		<Using Include="Microsoft.AspNetCore.Razor.TagHelpers" />
+		<Using Include="Microsoft.AspNetCore.Html" />
+		<Using Include="Microsoft.AspNetCore.Mvc.Rendering" />
+		<Using Include="Microsoft.Extensions.Options" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Include="..\NuGet-64x64.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Altairis.Services.DateProvider" Version="1.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.RazorPages" Version="2.2.5" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.2.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Razor.Runtime" Version="2.2.0" />
+		<PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\NuGet-64x64.png">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
 
 </Project>
