@@ -1,14 +1,15 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
+﻿// Register services
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddRazorPages();
+// Uncomment the following section to use custom date formatting
+//builder.Services.Configure<TimeTagHelperOptions>(options => {
+//    options.GeneralDateFormatter = d => string.Format("{0:d}", d);
+//});
 
-namespace Altairis.TagHelpers.DemoApp {
-    public class Program {
-        public static void Main(string[] args) => CreateHostBuilder(args).Build().Run();
+// Add middleware
+var app = builder.Build();
+app.UseStaticFiles();
+app.MapRazorPages();
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder => {
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
-}
+// Run application
+await app.RunAsync();
