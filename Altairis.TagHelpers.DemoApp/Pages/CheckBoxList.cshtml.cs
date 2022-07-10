@@ -1,39 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace Altairis.TagHelpers.DemoApp.Pages {
-    public class CheckBoxListModel : PageModel {
+namespace Altairis.TagHelpers.DemoApp.Pages;
 
-        [BindProperty]
-        public InputModel Input { get; set; } = new InputModel { RadioSelectedValue = "B", CheckboxSelectedValues = new[] { 2, 3 } };
+public class CheckBoxListModel : PageModel {
 
-        public class InputModel {
+    [BindProperty]
+    public InputModel Input { get; set; } = new InputModel {
+        RadioSelectedValue = "B",
+        CheckboxSelectedValues = new[] { 2, 3 }
+    };
 
-            public ICollection<int> CheckboxSelectedValues { get; set; }
+    public class InputModel {
 
-            public string RadioSelectedValue { get; set; }
+        public ICollection<int> CheckboxSelectedValues { get; set; } = new List<int>();
 
-            public DayOfWeek EnumSelectedValue { get; set; } = DayOfWeek.Wednesday;
+        public string? RadioSelectedValue { get; set; }
 
-        }
+        public DayOfWeek EnumSelectedValue { get; set; } = DayOfWeek.Wednesday;
 
-        public string Message { get; set; }
-
-        public IEnumerable<SelectListItem> CheckboxListItems => new List<SelectListItem>(new[] {
-            new SelectListItem("Item 1", "1"),
-            new SelectListItem("Item 2", "2"),
-            new SelectListItem("Item 3", "3"),
-        });
-
-        public IEnumerable<SelectListItem> RadioListItems => new List<SelectListItem>(new[] {
-            new SelectListItem("Item A", "A"),
-            new SelectListItem("Item B", "B"),
-            new SelectListItem("Item C", "C"),
-        });
-
-        public void OnPost() => this.Message = $"Selected checkbox item IDs: {string.Join(", ", this.Input.CheckboxSelectedValues)}, selected radio item ID: {this.Input.RadioSelectedValue}, selected enum value: {this.Input.EnumSelectedValue}";
     }
+
+    public string? Message { get; set; }
+
+    public IEnumerable<SelectListItem> CheckboxListItems => new List<SelectListItem>(new[] {
+        new SelectListItem("Item 1", "1"),
+        new SelectListItem("Item 2", "2"),
+        new SelectListItem("Item 3", "3"),
+    });
+
+    public IEnumerable<SelectListItem> RadioListItems => new List<SelectListItem>(new[] {
+        new SelectListItem("Item A", "A"),
+        new SelectListItem("Item B", "B"),
+        new SelectListItem("Item C", "C"),
+    });
+
+    public void OnPost() => this.Message = $"Selected checkbox item IDs: {string.Join(", ", this.Input.CheckboxSelectedValues)}, selected radio item ID: {this.Input.RadioSelectedValue}, selected enum value: {this.Input.EnumSelectedValue}";
 }

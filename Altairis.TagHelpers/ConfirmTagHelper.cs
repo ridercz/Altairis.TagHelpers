@@ -1,11 +1,13 @@
 ﻿namespace Altairis.TagHelpers;
 
-[HtmlTargetElement("a")]
-[HtmlTargetElement("button")]
-[HtmlTargetElement("input", Attributes = "[type=submit]")]
-[HtmlTargetElement("input", Attributes = "[type=button]")]
-[HtmlTargetElement("input", Attributes = "[type=reset]")]
-public class ConfirmTagHelper : TagHelper {
+namespace Altairis.TagHelpers {
+
+    [HtmlTargetElement("a")]
+    [HtmlTargetElement("button")]
+    [HtmlTargetElement("input", Attributes = "[type=submit]")]
+    [HtmlTargetElement("input", Attributes = "[type=button]")]
+    [HtmlTargetElement("input", Attributes = "[type=reset]")]
+    public class ConfirmTagHelper : TagHelper {
 
     public string ConfirmMessage { get; set; }
 

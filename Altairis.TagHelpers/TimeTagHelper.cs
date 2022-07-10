@@ -81,4 +81,6 @@ public class TimeTagHelperOptions {
 
     public Func<DateTime, string> TomorrowDateFormatter { get; set; } = d => string.Format("tomorrow, {0:t}", d);
 
+    }
+
 }

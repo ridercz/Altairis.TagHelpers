@@ -3,12 +3,12 @@ using Altairis.Services.DateProvider;
 
 namespace Altairis.TagHelpers;
 
-[HtmlTargetElement("calendar")]
-public class CalendarTagHelper : TagHelper {
-    private readonly CultureInfo culture = CultureInfo.CurrentCulture;
-    private readonly IDateProvider dateProvider;
-    private DateTime realDateBegin;
-    private DateTime realDateEnd;
+    [HtmlTargetElement("calendar")]
+    public class CalendarTagHelper : TagHelper {
+        private readonly CultureInfo culture = CultureInfo.CurrentCulture;
+        private readonly IDateProvider dateProvider;
+        private DateTime realDateBegin;
+        private DateTime realDateEnd;
 
     // Constructor
 

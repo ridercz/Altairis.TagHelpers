@@ -2,11 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Altairis.TagHelpers;
+namespace Altairis.TagHelpers {
+    public static class PageModelExtensions {
 
-public static class PageModelExtensions {
-
-    public static RedirectToPageResult AmbientRedirectToPage(this PageModel page) => page.AmbientRedirectToPage(pageName: null, pageHandler: null, routeValues: null, fragment: null);
+        public static RedirectToPageResult AmbientRedirectToPage(this PageModel page) => page.AmbientRedirectToPage(pageName: null, pageHandler: null, routeValues: null, fragment: null);
 
     public static RedirectToPageResult AmbientRedirectToPage(this PageModel page, object routeValues) => page.AmbientRedirectToPage(pageName: null, pageHandler: null, routeValues, fragment: null);
 
