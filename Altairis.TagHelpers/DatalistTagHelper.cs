@@ -1,6 +1,6 @@
-﻿namespace Altairis.TagHelpers {
+﻿namespace Altairis.TagHelpers; 
 
-    [HtmlTargetElement("input", Attributes = "items")]
+[HtmlTargetElement("input", Attributes = "items")]
 public class DatalistTagHelper : TagHelper {
 
     public IEnumerable<string> Items { get; set; } = new HashSet<string>();

@@ -2,34 +2,32 @@
 
 namespace Altairis.TagHelpers;
 
-    [HtmlTargetElement("*", Attributes = "include-roles")]
-    [HtmlTargetElement("*", Attributes = "exclude-roles")]
-    public class RolesTagHelper : TagHelper {
-        private readonly IHttpContextAccessor contextAccessor;
+[HtmlTargetElement("*", Attributes = "include-roles")]
+[HtmlTargetElement("*", Attributes = "exclude-roles")]
+public class RolesTagHelper : TagHelper {
 
-        public RolesTagHelper(IHttpContextAccessor contextAccessor) {
-            this.contextAccessor = contextAccessor;
-        }
-
-        public string ExcludeRoles { get; set; }
+    public string ExcludeRoles { get; set; }
 
     public string IncludeRoles { get; set; }
 
-        public override void Process(TagHelperContext context, TagHelperOutput output) {
-            base.Process(context, output);
+    [ViewContext]
+    public ViewContext ViewContext { get; set; }
 
-            // Process excluded roles
-            if (!string.IsNullOrWhiteSpace(this.ExcludeRoles) && MatchRoles(this.contextAccessor.HttpContext.User, this.ExcludeRoles)) {
-                output.SuppressOutput();
-                return;
-            }
+    public override void Process(TagHelperContext context, TagHelperOutput output) {
+        base.Process(context, output);
 
-            // Process included roles
-            if (!string.IsNullOrWhiteSpace(this.IncludeRoles) && !MatchRoles(this.contextAccessor.HttpContext.User, this.IncludeRoles)) {
-                output.SuppressOutput();
-                return;
-            }
+        // Process excluded roles
+        if (!string.IsNullOrWhiteSpace(this.ExcludeRoles) && MatchRoles(this.ViewContext.HttpContext.User, this.ExcludeRoles)) {
+            output.SuppressOutput();
+            return;
         }
+
+        // Process included roles
+        if (!string.IsNullOrWhiteSpace(this.IncludeRoles) && !MatchRoles(this.ViewContext.HttpContext.User, this.IncludeRoles)) {
+            output.SuppressOutput();
+            return;
+        }
+    }
 
     private static bool MatchRoles(ClaimsPrincipal principal, string roleString) {
         if (principal == null) throw new ArgumentNullException(nameof(principal));

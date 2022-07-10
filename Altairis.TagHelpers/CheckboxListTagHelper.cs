@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
-using Microsoft.AspNetCore.Razor.TagHelpers;
+﻿namespace Altairis.TagHelpers;
 
-namespace Altairis.TagHelpers {
-
-    [HtmlTargetElement("checkbox-list")]
-    public class CheckboxListTagHelper : TagHelper {
+[HtmlTargetElement("checkbox-list")]
+public class CheckboxListTagHelper : TagHelper {
 
     [HtmlAttributeName("asp-for")]
     public ModelExpression For { get; set; }
@@ -34,25 +26,25 @@ namespace Altairis.TagHelpers {
             var fieldId = $"{this.For.Name.Replace('.', '_')}[{i}]";
             var fieldSelected = items[i].Selected;
 
-                // Check if value is selected
-                if (!fieldSelected && this.For.Model != null) {
-                    switch (this.For.Model) {
-                        case string castedValue:
-                            fieldSelected = items[i].Value.Equals(castedValue, StringComparison.OrdinalIgnoreCase);
-                            break;
-                        case IEnumerable castedValue:
-                            fieldSelected = castedValue.Cast<object>().Any(x => items[i].Value.Equals(x.ToString(), StringComparison.Ordinal));
-                            break;
-                        case Enum castedValue:
-                            var underlyingType = Enum.GetUnderlyingType(castedValue.GetType());
-                            var modelValue = Convert.ChangeType(castedValue, underlyingType);
-                            fieldSelected = items[i].Value.Equals(modelValue.ToString(), StringComparison.OrdinalIgnoreCase);
-                            break;
-                        default:
-                            fieldSelected = items[i].Value.Equals(this.For.Model.ToString(), StringComparison.OrdinalIgnoreCase);
-                            break;
-                    }
+            // Check if value is selected
+            if (!fieldSelected && this.For.Model != null) {
+                switch (this.For.Model) {
+                    case string castedValue:
+                        fieldSelected = items[i].Value.Equals(castedValue, StringComparison.OrdinalIgnoreCase);
+                        break;
+                    case System.Collections.IEnumerable castedValue:
+                        fieldSelected = castedValue.Cast<object>().Any(x => items[i].Value.Equals(x.ToString(), StringComparison.Ordinal));
+                        break;
+                    case Enum castedValue:
+                        var underlyingType = Enum.GetUnderlyingType(castedValue.GetType());
+                        var modelValue = Convert.ChangeType(castedValue, underlyingType);
+                        fieldSelected = items[i].Value.Equals(modelValue.ToString(), StringComparison.OrdinalIgnoreCase);
+                        break;
+                    default:
+                        fieldSelected = items[i].Value.Equals(this.For.Model.ToString(), StringComparison.OrdinalIgnoreCase);
+                        break;
                 }
+            }
 
             // Create checkbox
             var input = new TagBuilder("input") {
@@ -83,4 +75,3 @@ public enum CheckboxListControlType {
     CheckBox,
     RadioButton
 }
-

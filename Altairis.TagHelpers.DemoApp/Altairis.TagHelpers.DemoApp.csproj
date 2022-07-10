@@ -1,11 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net5</TargetFramework>
-    <Version>$([System.DateTime]::UtcNow.ToString('yyyy.MM.dd.HHmm'))</Version>
-    <AssemblyVersion>$([System.DateTime]::UtcNow.ToString('yyyy.MM.dd.HHmm'))</AssemblyVersion>
-    <FileVersion>$([System.DateTime]::UtcNow.ToString('yyyy.MM.dd.HHmm'))</FileVersion>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6</TargetFramework>
+		<Version>$([System.DateTime]::UtcNow.ToString('yyyy.MM.dd.HHmm'))</Version>
+		<AssemblyVersion>$([System.DateTime]::UtcNow.ToString('yyyy.MM.dd.HHmm'))</AssemblyVersion>
+		<FileVersion>$([System.DateTime]::UtcNow.ToString('yyyy.MM.dd.HHmm'))</FileVersion>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\Altairis.TagHelpers\Altairis.TagHelpers.csproj" />

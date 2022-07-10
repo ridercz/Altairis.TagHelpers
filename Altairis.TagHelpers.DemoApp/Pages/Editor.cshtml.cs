@@ -11,13 +11,13 @@ namespace Altairis.TagHelpers.DemoApp.Pages {
         public class InputModel {
 
             [Display(Name = "Name")]
-            public string FullName { get; set; }
+            public string? FullName { get; set; }
 
             [Display(Name = "E-mail"), EmailAddress]
-            public string EmailAddress { get; set; }
+            public string? EmailAddress { get; set; }
 
             [Display(Name = "Comment"), DataType(DataType.MultilineText)]
-            public string Comment { get; set; }
+            public string? Comment { get; set; }
 
         }
 
