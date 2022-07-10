@@ -8,13 +8,13 @@
 		<Company>Altairis, s. r. o.</Company>
 		<Product>Altairis Tag Helpers</Product>
 		<Description>Useful tag helpers for ASP.NET Core.</Description>
-		<Copyright>(c) Altairis, 2017-2021</Copyright>
+		<Copyright>(c) Altairis, 2017-2022</Copyright>
 		<RepositoryUrl>https://github.com/ridercz/Altairis.TagHelpers.git</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageProjectUrl>https://github.com/ridercz/Altairis.TagHelpers</PackageProjectUrl>
 		<PackageIconUrl></PackageIconUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<Version>1.10.0</Version>
+		<Version>1.11.0</Version>
 		<PackageIcon>NuGet-64x64.png</PackageIcon>
 		<LangVersion>latest</LangVersion>
 		<ImplicitUsings>enable</ImplicitUsings>
