@@ -4,12 +4,12 @@
 public class CheckboxListTagHelper : TagHelper {
 
     [HtmlAttributeName("asp-for")]
-    public ModelExpression For { get; set; }
+    public ModelExpression For { get; set; } = null!;
 
     [HtmlAttributeName("asp-items")]
-    public IEnumerable<SelectListItem> Items { get; set; }
+    public IEnumerable<SelectListItem> Items { get; set; } = Enumerable.Empty<SelectListItem>();
 
-    public string Class { get; set; }
+    public string? Class { get; set; }
 
     public CheckboxListControlType ControlType { get; set; } = CheckboxListControlType.CheckBox;
 

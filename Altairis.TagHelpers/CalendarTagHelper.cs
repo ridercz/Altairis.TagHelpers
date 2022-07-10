@@ -12,7 +12,7 @@ namespace Altairis.TagHelpers;
 
     // Constructor
 
-    public CalendarTagHelper(IDateProvider dateProvider = null) {
+    public CalendarTagHelper(IDateProvider? dateProvider = null) {
         this.dateProvider = dateProvider ?? new LocalDateProvider();
     }
 
@@ -117,7 +117,7 @@ namespace Altairis.TagHelpers;
         return dayBuilder;
     }
 
-    private IHtmlContent GenerateDayEvents(DateTime day) {
+    private IHtmlContent? GenerateDayEvents(DateTime day) {
         static bool isBetween(DateTime value, DateTime begin, DateTime end) {
             return value.Date >= begin.Date && value.Date <= end.Date;
         }
@@ -190,7 +190,7 @@ namespace Altairis.TagHelpers;
 
 public class CalendarEvent {
 
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     public bool IsFullDay { get; set; }
 
@@ -198,17 +198,17 @@ public class CalendarEvent {
 
     public DateTime? DateEnd { get; set; }
 
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
-    public string Href { get; set; }
+    public string? Href { get; set; }
 
-    public string CssClass { get; set; }
+    public string? CssClass { get; set; }
 
-    public string ForegroundColor { get; set; }
+    public string? ForegroundColor { get; set; }
 
-    public string BackgroundColor { get; set; }
+    public string? BackgroundColor { get; set; }
 
 }
 

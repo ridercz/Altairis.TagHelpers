@@ -18,6 +18,7 @@
 		<PackageIcon>NuGet-64x64.png</PackageIcon>
 		<LangVersion>latest</LangVersion>
 		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
 	<ItemGroup>

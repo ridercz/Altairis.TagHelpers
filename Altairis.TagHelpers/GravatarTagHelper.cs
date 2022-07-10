@@ -8,19 +8,19 @@ public class GravatarTagHelper : TagHelper {
     private const GravatarRating DEFAULT_RATING = GravatarRating.G;
     private readonly GravatarOptions options;
 
-    public GravatarTagHelper(GravatarOptions options = null) {
+    public GravatarTagHelper(GravatarOptions? options = null) {
         this.options = options ?? GravatarOptions.Default;
     }
 
-    public string Email { get; set; }
+    public string Email { get; set; } = string.Empty;
 
     public int? Size { get; set; }
 
     private int EffectiveSize => this.Size ?? (this.options.Size ?? GravatarOptions.DefaultSize);
 
-    public string DefaultImage { get; set; }
+    public string? DefaultImage { get; set; }
 
-    private string EffectiveDefaultImage => this.DefaultImage ?? this.options.DefaultImage;
+    private string? EffectiveDefaultImage => this.DefaultImage ?? this.options.DefaultImage;
 
     public GravatarRating? Rating { get; set; }
 
@@ -61,11 +61,10 @@ public class GravatarTagHelper : TagHelper {
     private string GetEmailHash() {
         var email = this.Email.Trim().ToLowerInvariant();
         var emailBytes = Encoding.ASCII.GetBytes(email);
-        using (var md5 = MD5.Create()) {
-            var hashBytes = md5.ComputeHash(emailBytes);
-            var hashString = string.Join(string.Empty, hashBytes.Select(b => b.ToString("x2")));
-            return hashString;
-        }
+        using var md5 = MD5.Create();
+        var hashBytes = md5.ComputeHash(emailBytes);
+        var hashString = string.Join(string.Empty, hashBytes.Select(b => b.ToString("x2")));
+        return hashString;
     }
 
 }
@@ -76,7 +75,7 @@ public class GravatarOptions {
 
     public int? Size { get; set; }
 
-    public string DefaultImage { get; set; }
+    public string? DefaultImage { get; set; }
 
     public GravatarRating? Rating { get; set; }
 

@@ -6,12 +6,12 @@ namespace Altairis.TagHelpers;
 [HtmlTargetElement("*", Attributes = "exclude-roles")]
 public class RolesTagHelper : TagHelper {
 
-    public string ExcludeRoles { get; set; }
+    public string ExcludeRoles { get; set; } = string.Empty;
 
-    public string IncludeRoles { get; set; }
+    public string IncludeRoles { get; set; } = string.Empty;
 
     [ViewContext]
-    public ViewContext ViewContext { get; set; }
+    public ViewContext ViewContext { get; set; } = null!;
 
     public override void Process(TagHelperContext context, TagHelperOutput output) {
         base.Process(context, output);

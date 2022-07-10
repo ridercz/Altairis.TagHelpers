@@ -7,24 +7,24 @@ public class TimeTagHelper : TagHelper {
     private readonly TimeTagHelperOptions options;
     private readonly IDateProvider dateProvider;
 
-    public TimeTagHelper(IOptions<TimeTagHelperOptions> optionsAccessor = null, IDateProvider dateProvider = null) {
+    public TimeTagHelper(IOptions<TimeTagHelperOptions>? optionsAccessor = null, IDateProvider? dateProvider = null) {
         this.options = optionsAccessor?.Value ?? new TimeTagHelperOptions();
         this.dateProvider = dateProvider ?? new LocalDateProvider();
     }
 
     public DateTime? Value { get; set; }
 
-    public string TooltipFormat { get; set; }
+    public string? TooltipFormat { get; set; }
 
-    public string GeneralFormat { get; set; }
+    public string? GeneralFormat { get; set; }
 
-    public string TodayFormat { get; set; }
+    public string? TodayFormat { get; set; }
 
-    public string YesterdayFormat { get; set; }
+    public string? YesterdayFormat { get; set; }
 
-    public string TomorrowFormat { get; set; }
+    public string? TomorrowFormat { get; set; }
 
-    public string NullText { get; set; }
+    public string? NullText { get; set; }
 
     public override void Process(TagHelperContext context, TagHelperOutput output) {
         base.Process(context, output);
@@ -33,7 +33,7 @@ public class TimeTagHelper : TagHelper {
             // Value is not specified
             output.Content.SetContent(this.NullText ?? this.options.NullDateFormatter());
         } else {
-            string formatValue(DateTime value, string fixedFormat, Func<DateTime, string> configuredFormat) {
+            string formatValue(DateTime value, string? fixedFormat, Func<DateTime, string> configuredFormat) {
                 return string.IsNullOrEmpty(fixedFormat) ? configuredFormat(value) : string.Format(fixedFormat, value);
             }
 

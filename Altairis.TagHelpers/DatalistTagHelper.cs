@@ -5,9 +5,7 @@ public class DatalistTagHelper : TagHelper {
 
     public IEnumerable<string> Items { get; set; } = new HashSet<string>();
 
-    public string DatalistId { get; set; }
-
-    // public override int Order => int.MaxValue;
+    public string DatalistId { get; set; } = string.Empty;
 
     public override void Process(TagHelperContext context, TagHelperOutput output) {
         base.Process(context, output);

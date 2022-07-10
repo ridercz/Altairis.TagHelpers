@@ -9,12 +9,12 @@ public class EditorTagHelper : TagHelper {
     }
 
     [HtmlAttributeName("asp-for")]
-    public ModelExpression For { get; set; }
+    public ModelExpression For { get; set; } = null!;
 
-    public string TemplateName { get; set; }
+    public string? TemplateName { get; set; }
 
     [ViewContext, HtmlAttributeNotBound]
-    public ViewContext ViewContext { get; set; }
+    public ViewContext ViewContext { get; set; }=null!;
 
     public override void Process(TagHelperContext context, TagHelperOutput output) {
         base.Process(context, output);
