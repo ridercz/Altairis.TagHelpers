@@ -1,0 +1,66 @@
+﻿@mixin Inverse($BgColor: #000) {
+    padding: 1em;
+    background-color: $BgColor;
+    color: #fff;
+
+    a {
+        color: #fff !important;
+        text-decoration: none;
+
+        &:hover, &:active {
+            text-decoration: underline;
+        }
+    }
+}
+
+html {
+    background-color: #ccc;
+    color: #000;
+
+    body {
+        max-width: 900px;
+        margin: 1em auto;
+        background-color: #fff;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+        > header {
+            @include Inverse();
+
+            h1 {
+                margin: 0;
+            }
+        }
+
+        > main {
+            padding: 1em;
+        }
+
+        > footer {
+            @include Inverse($BgColor: #666);
+            font-size: 80%;
+        }
+    }
+}
+
+a {
+    &:link {
+        color: #03f;
+    }
+
+    &:visited {
+        color: #039;
+    }
+
+    &:hover, &:active {
+        color: #c00;
+    }
+}
+
+h2 {
+    background-color: #ddd;
+    padding: 1ex;
+}
+
+input[type=submit] {
+    padding: 1ex 3em;
+}

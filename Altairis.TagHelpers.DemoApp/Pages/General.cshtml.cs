@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Altairis.TagHelpers.DemoApp.Pages {
-    public class IndexModel : PageModel {
+    public class GeneralModel : PageModel {
 
         [BindProperty]
         public string MonthName { get; set; }

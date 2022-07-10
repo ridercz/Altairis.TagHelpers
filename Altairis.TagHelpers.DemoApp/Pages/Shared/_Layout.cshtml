@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Altairis Tag Helpers Demo Application</title>
+    <link rel="stylesheet" href="~/Styles/site.min.css" asp-append-version="true" />
+    @RenderSection("Head", required:false)
+</head>
+<body>
+    <header>
+        <h1><a asp-page="/Index">Altairis Tag Helpers Demo Application</a></h1>
+    </header>
+    <main>
+        @RenderBody()
+    </main>
+    <footer>
+        Copyright &copy; <a href="https://www.rider.cz/">Michal A. Valášek</a> - <a href="https://www.altairis.cz/">Altairis</a>, @DateTime.Today.Year
+    </footer>
+</body>
+</html>

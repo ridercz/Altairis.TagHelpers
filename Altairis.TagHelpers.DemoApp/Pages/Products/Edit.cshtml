@@ -1,17 +1,11 @@
 ﻿@page "{productId}"
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Edit product</title>
-</head>
-<body>
-    <h1>Edit product #@this.RouteData.Values["productId"]</h1>
-    <p>
-        [
-        <aa asp-page="Detail">Detail</aa>
-        |
-        <a asp-page="Index">Index</a>
-        ]
-    </p>
-</body>
-</html>
+
+
+<h2>Edit product #@this.RouteData.Values["productId"]</h2>
+<p>
+    [
+    <aa asp-page="Detail">Detail</aa>
+    |
+    <a asp-page="Index">Index</a>
+    ]
+</p>

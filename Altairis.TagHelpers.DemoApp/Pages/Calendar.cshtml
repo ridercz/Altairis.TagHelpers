@@ -1,19 +1,17 @@
 ﻿@page
 @model Altairis.TagHelpers.DemoApp.Pages.CalendarModel
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
+
+<h2>CalendarTagHelper</h2>
+
+<calendar class="calendar"
+            date-begin="new DateTime(2020, 4, 1)"
+            date-end="new DateTime(2020, 4, 30)"
+            day-name-style="Full"
+            events="this.Model.Events"
+            general-date-format="d."
+            new-month-date-format="d. MMMM"
+            selected-days="this.Model.SelectedDays"></calendar>
+
+@section Head {
     <link rel="stylesheet" href="~/Styles/calendar.css" />
-</head>
-<body>
-    <calendar class="calendar"
-              date-begin="new DateTime(2020, 4, 1)"
-              date-end="new DateTime(2020, 4, 30)"
-              day-name-style="Full"
-              events="this.Model.Events"
-              general-date-format="d."
-              new-month-date-format="d. MMMM"
-              selected-days="this.Model.SelectedDays"></calendar>
-</body>
-</html>
+}

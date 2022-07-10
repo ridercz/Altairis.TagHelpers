@@ -1,10 +1,40 @@
 ﻿@page
 @model Altairis.TagHelpers.DemoApp.Pages.CheckBoxListModel
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>CheckBoxList</title>
+
+<h2>CheckBoxListTagHelper</h2>
+
+<form method="post">
+    <fieldset>
+        <legend>Default</legend>
+
+        <checkbox-list asp-for="Input.CheckboxSelectedValues"
+                       asp-items="Model.CheckboxListItems"
+                       class="checkboxlist"></checkbox-list>
+    </fieldset>
+    <fieldset>
+        <legend>RadioButtons</legend>
+
+        <checkbox-list asp-for="Input.RadioSelectedValue"
+                       asp-items="Model.RadioListItems"
+                       class="checkboxlist"
+                       control-type="RadioButton" />
+    </fieldset>
+    <fieldset>
+        <legend>Values from enum</legend>
+
+        <checkbox-list asp-for="Input.EnumSelectedValue"
+                       asp-items="Html.GetEnumSelectList<DayOfWeek>()"
+                       class="checkboxlist"
+                       control-type="RadioButton"></checkbox-list>
+    </fieldset>
+    <p>@Model.Message</p>
+    <p>
+        <input type="submit" value="Submit" />
+    </p>
+</form>
+
+
+@section Head {
     <style type="text/css">
         ul.checkboxlist {
             margin: 0;
@@ -12,26 +42,4 @@
             list-style-type: none;
         }
     </style>
-</head>
-<body>
-    <form method="post">
-        <table>
-            <tr>
-                <td>
-                    <checkbox-list asp-for="Input.CheckboxSelectedValues" asp-items="Model.CheckboxListItems" class="checkboxlist"></checkbox-list>
-                </td>
-                <td>
-                    <checkbox-list asp-for="Input.RadioSelectedValue" asp-items="Model.RadioListItems" class="checkboxlist" control-type="RadioButton" />
-                </td>
-                <td>
-                    <checkbox-list asp-for="Input.EnumSelectedValue" asp-items="Html.GetEnumSelectList<DayOfWeek>()" class="checkboxlist" control-type="RadioButton"></checkbox-list>
-                </td>
-            </tr>
-        </table>
-        <p>
-            <input type="submit" value="Submit" />
-        </p>
-    </form>
-    <p>@Model.Message</p>
-</body>
-</html>
+}
