@@ -40,6 +40,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<None Include="..\.editorconfig" Link=".editorconfig" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<None Include="..\NuGet-64x64.png">
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
