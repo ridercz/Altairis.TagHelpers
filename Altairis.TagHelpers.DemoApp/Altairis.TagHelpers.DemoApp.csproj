@@ -9,15 +9,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Content Remove="compilerconfig.json" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<None Include="compilerconfig.json" />
-		<None Include="Pages\Shared\_Layout.cshtml" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<ProjectReference Include="..\Altairis.TagHelpers\Altairis.TagHelpers.csproj" />
 	</ItemGroup>
 
