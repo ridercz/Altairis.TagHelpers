@@ -1,0 +1,22 @@
+﻿@page
+@model Altairis.TagHelpers.DemoApp.Pages.EditorModel
+
+<h2>EditorTagHelper</h2>
+<form method="post">
+    <p>
+        <label asp-for="Input.FullName"></label><br />
+        <editor asp-for="Input.FullName"></editor>
+    </p>
+    <p>
+        <label asp-for="Input.EmailAddress"></label><br />
+        <editor asp-for="Input.EmailAddress"></editor>
+    </p>
+    <p>
+        <label asp-for="Input.Comment"></label><br />
+        <editor asp-for="Input.Comment"></editor>
+    </p>
+    <div asp-validation-summary="All"></div>
+    <p>
+        <input type="submit" value="Submit" />
+    </p>
+</form>
