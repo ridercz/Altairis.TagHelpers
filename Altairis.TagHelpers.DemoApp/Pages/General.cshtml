@@ -22,6 +22,14 @@
     <gravatar email="example@example.com" size="64" title="Custom" default-image="https://raw.githubusercontent.com/ridercz/Altairis.TagHelpers/master/NuGet-64x64.png" />
 </p>
 
+<h2>DicebearAvatarTagHelper</h2>
+<p>
+    <dicebear-avatar seed="mine" />
+    <dicebear-avatar seed="mine" hash-seed="false" />
+    <dicebear-avatar seed="Hello World" hash-seed="false" sprites="@DicebearAvatarSprite.Initials" radius="50" />
+    <dicebear-avatar seed="mine" sprites="@DicebearAvatarSprite.Bottts" />
+</p>
+
 <h2>RolesTagHelper</h2>
 <p include-roles="*">Only authenticated users see this.</p>
 <p exclude-roles="?">Only authenticated users see this.</p>
