@@ -83,7 +83,7 @@ public static class DicebearAvatarSprite {
     public const string Identicon = "identicon";
     public const string Initials = "initials";
     public const string Bottts = "bottts";
-    public const string Avataaars = "avataars";
+    public const string Avataaars = "avataaars";
     public const string JDenticon = "jdenticon";
     public const string Gridy = "gridy";
     public const string Micah = "micah";
