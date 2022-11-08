@@ -27,11 +27,13 @@ public class DicebearAvatarTagHelper : TagHelper {
 
     public int Size { get; set; } = DEFAULT_SIZE;
 
-    public string BackgroundColor { get; set; } = string.Empty;
+    public string? BackgroundColor { get; set; }
 
     public int TranslateX { get; set; } = 0;
 
     public int TranslateY { get; set; } = 0;
+
+    public string? CustomParams { get; set; }
 
     // Tag helper
 
@@ -61,6 +63,7 @@ public class DicebearAvatarTagHelper : TagHelper {
         if (!string.IsNullOrWhiteSpace(this.BackgroundColor)) sb.Append($"backgroundColor={HttpUtility.UrlEncode(this.BackgroundColor)}&");
         if (this.TranslateX >= -100 && this.TranslateX <= 100 && this.TranslateX != 0) sb.Append($"translateX={this.TranslateX}&");
         if (this.TranslateY >= -100 && this.TranslateY <= 100 && this.TranslateY != 0) sb.Append($"translateY={this.TranslateY}&");
+        if (!string.IsNullOrWhiteSpace(this.CustomParams)) sb.Append(this.CustomParams);
         var url = sb.ToString().TrimEnd('?', '&');
         return url;
     }
