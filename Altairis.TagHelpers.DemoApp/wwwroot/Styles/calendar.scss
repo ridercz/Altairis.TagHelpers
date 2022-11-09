@@ -4,19 +4,26 @@ $TodayAccentColor: #c00;
 $SelectedAccentColor: #c90;
 $Border: 1px solid $FgColor;
 $Padding: 1ex;
+$ScreenStop: 1000px;
 
 // Calendar styling
 .calendar {
-    display: flex;
-    flex-direction: column;
+    @media (min-width: $ScreenStop) {
+        display: flex;
+        flex-direction: column;
+    }
+
     width: 100%;
     border: $Border;
     background-color: $BgColor;
-
     // Day names
     > header {
-        display: flex;
-        flex-direction: row;
+        display: none;
+
+        @media (min-width: $ScreenStop) {
+            display: flex;
+            flex-direction: row;
+        }
 
         > div {
             flex: 1;
@@ -27,19 +34,37 @@ $Padding: 1ex;
     }
 
     section.week {
-        display: flex;
-        flex-direction: row;
+        @media (min-width: $ScreenStop) {
+            display: flex;
+            flex-direction: row;
+        }
 
         // Single day
         > article {
             flex: 1;
             border: $Border;
-            min-height: 10em;
+
+            @media (min-width: $ScreenStop) {
+                min-height: 10em;
+            }
 
             header {
                 margin: $Padding / 2;
                 padding: $Padding;
-                text-align: right;
+                text-align: left;
+
+                @media (min-width: $ScreenStop) {
+                    text-align: right;
+                }
+            }
+
+            header::before {
+                content: attr(data-dow);
+                float: right;
+
+                @media (min-width: $ScreenStop) {
+                    content: initial;
+                }
             }
 
             &.today {
@@ -57,6 +82,12 @@ $Padding: 1ex;
             }
 
             &.extra {
+                display: none;
+
+                @media (min-width: $ScreenStop) {
+                    display: initial;
+                }
+
                 opacity: .5;
             }
 

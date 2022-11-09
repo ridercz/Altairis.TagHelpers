@@ -1,14 +1,23 @@
 ﻿@charset "UTF-8";
 .calendar {
-  display: flex;
-  flex-direction: column;
   width: 100%;
   border: 1px solid #000;
   background-color: #fff;
 }
+@media (min-width: 1000px) {
+  .calendar {
+    display: flex;
+    flex-direction: column;
+  }
+}
 .calendar > header {
-  display: flex;
-  flex-direction: row;
+  display: none;
+}
+@media (min-width: 1000px) {
+  .calendar > header {
+    display: flex;
+    flex-direction: row;
+  }
 }
 .calendar > header > div {
   flex: 1;
@@ -16,19 +25,39 @@
   text-align: center;
   padding: 1ex;
 }
-.calendar section.week {
-  display: flex;
-  flex-direction: row;
+@media (min-width: 1000px) {
+  .calendar section.week {
+    display: flex;
+    flex-direction: row;
+  }
 }
 .calendar section.week > article {
   flex: 1;
   border: 1px solid #000;
-  min-height: 10em;
+}
+@media (min-width: 1000px) {
+  .calendar section.week > article {
+    min-height: 10em;
+  }
 }
 .calendar section.week > article header {
   margin: 0.5ex;
   padding: 1ex;
-  text-align: right;
+  text-align: left;
+}
+@media (min-width: 1000px) {
+  .calendar section.week > article header {
+    text-align: right;
+  }
+}
+.calendar section.week > article header::before {
+  content: attr(data-dow);
+  float: right;
+}
+@media (min-width: 1000px) {
+  .calendar section.week > article header::before {
+    content: initial;
+  }
 }
 .calendar section.week > article.today header {
   color: #c00;
@@ -39,7 +68,13 @@
   font-weight: bold;
 }
 .calendar section.week > article.extra {
+  display: none;
   opacity: 0.5;
+}
+@media (min-width: 1000px) {
+  .calendar section.week > article.extra {
+    display: initial;
+  }
 }
 .calendar section.week > article.weekend {
   background-color: rgba(0, 0, 0, 0.1);

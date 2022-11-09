@@ -105,12 +105,21 @@ namespace Altairis.TagHelpers;
         if (day.Date == this.dateProvider.Today) dayBuilder.AddCssClass("today");
         if (this.SelectedDays.Any(x => x.Date == day.Date)) dayBuilder.AddCssClass("selected");
 
+
         // Add date
         var dayHeaderBuilder = new TagBuilder("header");
         dayHeaderBuilder.InnerHtml.AppendHtml(day.ToString(day.Day == 1 ? this.NewMonthDateFormat : this.GeneralDateFormat));
         dayBuilder.InnerHtml.AppendLine();
         dayBuilder.InnerHtml.AppendHtml(dayHeaderBuilder);
         dayBuilder.InnerHtml.AppendLine();
+
+        // Add data attributes
+        var dayName = this.DayNameStyle switch {
+            DayNameStyle.Shortest => this.culture.DateTimeFormat.GetShortestDayName(day.DayOfWeek),
+            DayNameStyle.Abbreviated => this.culture.DateTimeFormat.GetAbbreviatedDayName(day.DayOfWeek),
+            _ => this.culture.DateTimeFormat.GetDayName(day.DayOfWeek)
+        };
+        dayHeaderBuilder.Attributes.Add("data-dow", dayName);
 
         // Add day events
         dayBuilder.InnerHtml.AppendHtml(this.GenerateDayEvents(day));
