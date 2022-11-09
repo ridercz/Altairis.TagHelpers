@@ -5,44 +5,63 @@ using System.Web;
 namespace Altairis.TagHelpers;
 
 public class DicebearAvatarTagHelper : TagHelper {
-    private const int DEFAULT_SIZE = 80;
+
+    private readonly DicebearAvatarOptions options;
+
+    public DicebearAvatarTagHelper(IOptions<DicebearAvatarOptions> options) {
+        this.options = options.Value ?? new();
+    }
 
     // Seed
 
     public string Seed { get; set; } = string.Empty;
 
-    public bool HashSeed { get; set; } = true;
+    public bool? HashSeed { get; set; }
 
     // Configuration properties
 
-    public string Sprites { get; set; } = DicebearAvatarSprite.Identicon;
+    public string? Sprites { get; set; }
 
-    public bool Flip { get; set; } = false;
+    public bool? Flip { get; set; }
 
-    public int Rotate { get; set; } = 0;
+    public int? Rotate { get; set; }
 
-    public int Scale { get; set; } = 100;
+    public int? Scale { get; set; }
 
-    public int Radius { get; set; } = 0;
+    public int? Radius { get; set; }
 
-    public int Size { get; set; } = DEFAULT_SIZE;
+    public int? Size { get; set; }
 
     public string? BackgroundColor { get; set; }
 
-    public int TranslateX { get; set; } = 0;
+    public int? TranslateX { get; set; }
 
-    public int TranslateY { get; set; } = 0;
+    public int? TranslateY { get; set; }
 
     public string? CustomParams { get; set; }
 
     // Tag helper
 
     public override void Process(TagHelperContext context, TagHelperOutput output) {
+        // Run parent code
         base.Process(context, output);
 
+        // Update local values with options
+        this.BackgroundColor ??= this.options.BackgroundColor;
+        this.CustomParams ??= this.options.CustomParams;
+        this.Flip ??= this.options.Flip;
+        this.HashSeed ??= this.options.HashSeed;
+        this.Radius ??= this.options.Radius;
+        this.Rotate ??= this.options.Rotate;
+        this.Scale ??= this.options.Scale;
+        this.Size ??= this.options.Size;
+        this.Sprites ??= this.options.Sprites;
+        this.TranslateX ??= this.options.TranslateX;
+        this.TranslateY ??= this.options.TranslateY;
+
+        // Prepare output element
         output.TagName = "img";
         output.TagMode = TagMode.SelfClosing;
-
         output.Attributes.Add("src", this.GetServiceUrl());
         if (this.Size > 0) {
             output.Attributes.Add("width", this.Size);
@@ -54,8 +73,11 @@ public class DicebearAvatarTagHelper : TagHelper {
     // Helper methods
 
     private string GetServiceUrl() {
+        // Construct base URL
         var sb = new StringBuilder($"https://avatars.dicebear.com/api/{this.Sprites}/{this.GetSeedHash()}.svg?");
-        if (this.Flip) sb.Append("flip=true&");
+
+        // Add optional parameters
+        if (this.Flip == true) sb.Append("flip=true&");
         if (this.Rotate > 0 && this.Rotate < 360) sb.Append($"rotate={this.Rotate}&");
         if (this.Scale >= 0 && this.Scale <= 200 && this.Scale != 100) sb.Append($"scale={this.Scale}&");
         if (this.Radius > 0 && this.Radius <= 50) sb.Append($"radius={this.Radius}&");
@@ -64,12 +86,14 @@ public class DicebearAvatarTagHelper : TagHelper {
         if (this.TranslateX >= -100 && this.TranslateX <= 100 && this.TranslateX != 0) sb.Append($"translateX={this.TranslateX}&");
         if (this.TranslateY >= -100 && this.TranslateY <= 100 && this.TranslateY != 0) sb.Append($"translateY={this.TranslateY}&");
         if (!string.IsNullOrWhiteSpace(this.CustomParams)) sb.Append(this.CustomParams);
+
+        // Remove trailing character
         var url = sb.ToString().TrimEnd('?', '&');
         return url;
     }
 
     private string GetSeedHash() {
-        if (!this.HashSeed) return this.Seed;
+        if (this.HashSeed == false) return this.Seed;
 
         using var sha = SHA256.Create();
         var hash = sha.ComputeHash(Encoding.UTF8.GetBytes(this.Seed));
@@ -90,4 +114,31 @@ public static class DicebearAvatarSprite {
     public const string JDenticon = "jdenticon";
     public const string Gridy = "gridy";
     public const string Micah = "micah";
+}
+
+public class DicebearAvatarOptions {
+    public const int DefaultSize = 80;
+
+    public bool HashSeed { get; set; } = true;
+
+    public string Sprites { get; set; } = DicebearAvatarSprite.Identicon;
+
+    public bool Flip { get; set; } = false;
+
+    public int Rotate { get; set; } = 0;
+
+    public int Scale { get; set; } = 100;
+
+    public int Radius { get; set; } = 0;
+
+    public int Size { get; set; } = DefaultSize;
+
+    public string? BackgroundColor { get; set; }
+
+    public int TranslateX { get; set; } = 0;
+
+    public int TranslateY { get; set; } = 0;
+
+    public string? CustomParams { get; set; }
+
 }
