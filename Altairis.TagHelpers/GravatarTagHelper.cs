@@ -4,42 +4,38 @@ using System.Text;
 namespace Altairis.TagHelpers;
 
 public class GravatarTagHelper : TagHelper {
-    private const int DEFAULT_SIZE = 80;
-    private const GravatarRating DEFAULT_RATING = GravatarRating.G;
     private readonly GravatarOptions options;
 
     public GravatarTagHelper(IOptions<GravatarOptions> options) {
-        this.options = options.Value ?? GravatarOptions.Default;
+        this.options = options.Value ?? new();
     }
 
     public string Email { get; set; } = string.Empty;
 
     public int? Size { get; set; }
 
-    private int EffectiveSize => this.Size ?? (this.options.Size ?? GravatarOptions.DefaultSize);
-
     public string? DefaultImage { get; set; }
-
-    private string? EffectiveDefaultImage => this.DefaultImage ?? this.options.DefaultImage;
 
     public GravatarRating? Rating { get; set; }
 
-    private GravatarRating EffectiveRating => this.Rating ?? (this.options.Rating ?? GravatarOptions.DefaultRating);
-
     public bool? ForceDefault { get; set; }
 
-    private bool EffectiveForceDefault => this.ForceDefault ?? (this.options?.ForceDefault ?? false);
-
     public override void Process(TagHelperContext context, TagHelperOutput output) {
+        // Run parent code
         base.Process(context, output);
 
+        // Update local values with options
+        this.Size ??= this.options.Size;
+        this.DefaultImage ??= this.options.DefaultImage;
+        this.Rating ??= this.options.Rating;
+        this.ForceDefault ??= this.options.ForceDefault;
+
+        // Prepare output element
         output.TagName = "img";
         output.TagMode = TagMode.SelfClosing;
-
         output.Attributes.Add("src", this.GetGravatarUrl());
-        output.Attributes.Add("width", this.EffectiveSize);
-        output.Attributes.Add("height", this.EffectiveSize);
-
+        output.Attributes.Add("width", this.Size);
+        output.Attributes.Add("height", this.Size);
         if (context.AllAttributes["alt"] == null) output.Attributes.Add("alt", "Gravatar");
     }
 
@@ -49,11 +45,12 @@ public class GravatarTagHelper : TagHelper {
         sb.Append($"https://www.gravatar.com/avatar/{this.GetEmailHash()}?");
 
         // Add optional parameters
-        if (this.EffectiveSize != DEFAULT_SIZE) sb.Append($"s={this.EffectiveSize}&");
-        if (this.EffectiveRating != DEFAULT_RATING) sb.Append($"r={this.EffectiveRating.ToString().ToLowerInvariant()}&");
-        if (!string.IsNullOrWhiteSpace(this.EffectiveDefaultImage)) sb.Append($"d={this.EffectiveDefaultImage}&");
-        if (this.EffectiveForceDefault) sb.Append("f=y&");
+        if (this.Size != GravatarOptions.DefaultSize) sb.Append($"s={this.Size}&");
+        if (this.Rating != GravatarOptions.DefaultRating) sb.Append($"r={this.Rating.ToString().ToLowerInvariant()}&");
+        if (!string.IsNullOrWhiteSpace(this.DefaultImage)) sb.Append($"d={this.DefaultImage}&");
+        if (this.ForceDefault == true) sb.Append("f=y&");
 
+        // Remove trailing character
         var url = sb.ToString().TrimEnd('?', '&');
         return url;
     }
@@ -73,18 +70,13 @@ public class GravatarOptions {
     public const int DefaultSize = 80;
     public const GravatarRating DefaultRating = GravatarRating.G;
 
-    public int? Size { get; set; }
+    public int Size { get; set; } = DefaultSize;
 
     public string? DefaultImage { get; set; }
 
-    public GravatarRating? Rating { get; set; }
+    public GravatarRating Rating { get; set; } = DefaultRating;
 
-    public bool ForceDefault { get; set; }
-
-    public static readonly GravatarOptions Default = new() {
-        Size = DefaultSize,
-        Rating = DefaultRating
-    };
+    public bool ForceDefault { get; set; } = false;
 
 }
 
