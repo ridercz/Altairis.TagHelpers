@@ -8,8 +8,8 @@ public class GravatarTagHelper : TagHelper {
     private const GravatarRating DEFAULT_RATING = GravatarRating.G;
     private readonly GravatarOptions options;
 
-    public GravatarTagHelper(GravatarOptions? options = null) {
-        this.options = options ?? GravatarOptions.Default;
+    public GravatarTagHelper(IOptions<GravatarOptions> options) {
+        this.options = options.Value ?? GravatarOptions.Default;
     }
 
     public string Email { get; set; } = string.Empty;
