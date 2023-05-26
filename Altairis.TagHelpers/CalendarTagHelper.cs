@@ -9,6 +9,8 @@ namespace Altairis.TagHelpers;
         private readonly IDateProvider dateProvider;
         private DateTime realDateBegin;
         private DateTime realDateEnd;
+	private int daysCount => 7;
+    private int realDaysCount => this.IncludeWeekend ? 7 : 5;
 
     // Constructor
 
@@ -31,6 +33,8 @@ namespace Altairis.TagHelpers;
     public string GeneralDateFormat { get; set; } = "d.";
 
     public string NewMonthDateFormat { get; set; } = "d. MMMM";
+
+    public bool IncludeWeekend { get; set; } = true;
 
     // Main process method
 
@@ -57,7 +61,7 @@ namespace Altairis.TagHelpers;
         while (d < this.realDateEnd) {
             output.Content.AppendLine();
             output.Content.AppendHtml(this.GenerateWeek(d));
-            d = d.AddDays(7);
+            d = d.AddDays(daysCount);
         }
     }
 
@@ -65,7 +69,7 @@ namespace Altairis.TagHelpers;
 
     private IHtmlContent GenerateHeader() {
         var headerBuilder = new TagBuilder("header");
-        for (var i = 0; i < 7; i++) {
+        for (var i = 0; i < this.realDaysCount; i++) {
             var d = this.realDateBegin.AddDays(i);
             var dayName = this.DayNameStyle switch {
                 DayNameStyle.Shortest => this.culture.DateTimeFormat.GetShortestDayName(d.DayOfWeek),
@@ -88,7 +92,7 @@ namespace Altairis.TagHelpers;
         weekBuilder.Attributes.Add("data-week-number", this.culture.Calendar.GetWeekOfYear(firstDay, CalendarWeekRule.FirstDay, this.culture.DateTimeFormat.FirstDayOfWeek).ToString());
 
 
-        for (var i = 0; i < 7; i++) {
+        for (var i = 0; i < this.realDaysCount; i++) {
             var d = firstDay.AddDays(i);
             weekBuilder.InnerHtml.AppendLine();
             weekBuilder.InnerHtml.AppendHtml(this.GenerateDay(d));
