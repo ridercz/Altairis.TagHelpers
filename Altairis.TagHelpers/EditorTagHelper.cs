@@ -14,7 +14,7 @@ public class EditorTagHelper : TagHelper {
     public string? TemplateName { get; set; }
 
     [ViewContext, HtmlAttributeNotBound]
-    public ViewContext ViewContext { get; set; }=null!;
+    public ViewContext ViewContext { get; set; } = null!;
 
     public override void Process(TagHelperContext context, TagHelperOutput output) {
         base.Process(context, output);

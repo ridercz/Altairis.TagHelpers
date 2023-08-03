@@ -1,4 +1,4 @@
-﻿namespace Altairis.TagHelpers; 
+﻿namespace Altairis.TagHelpers;
 
 [HtmlTargetElement("input", Attributes = "items")]
 public class DatalistTagHelper : TagHelper {

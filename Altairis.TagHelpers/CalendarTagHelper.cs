@@ -95,12 +95,10 @@ public class CalendarTagHelper : TagHelper {
         weekBuilder.Attributes.Add("class", "week");
         weekBuilder.Attributes.Add("data-week-number", this.culture.Calendar.GetWeekOfYear(firstDay, CalendarWeekRule.FirstDay, this.culture.DateTimeFormat.FirstDayOfWeek).ToString());
 
-
         for (var i = 0; i < 7; i++) {
             var d = firstDay.AddDays(i);
 
-            if (!IncludeWeekend && IsWeekend(d))    //skip weekend
-                continue;
+            if (!this.IncludeWeekend && IsWeekend(d)) continue;
 
             weekBuilder.InnerHtml.AppendLine();
             weekBuilder.InnerHtml.AppendHtml(this.GenerateDay(d));
@@ -116,7 +114,6 @@ public class CalendarTagHelper : TagHelper {
         if (day.DayOfWeek == DayOfWeek.Saturday || day.DayOfWeek == DayOfWeek.Sunday) dayBuilder.AddCssClass("weekend");
         if (day.Date == this.dateProvider.Today) dayBuilder.AddCssClass("today");
         if (this.SelectedDays.Any(x => x.Date == day.Date)) dayBuilder.AddCssClass("selected");
-
 
         // Add date
         var dayHeaderBuilder = new TagBuilder("header");
