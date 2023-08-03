@@ -8,12 +8,12 @@
 		<Company>Altairis, s. r. o.</Company>
 		<Product>Altairis Tag Helpers</Product>
 		<Description>Useful tag helpers for ASP.NET Core.</Description>
-		<Copyright>(c) Altairis, 2017-2022</Copyright>
+		<Copyright>(c) Altairis, 2017-2023</Copyright>
 		<RepositoryUrl>https://github.com/ridercz/Altairis.TagHelpers.git</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageProjectUrl>https://github.com/ridercz/Altairis.TagHelpers</PackageProjectUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<Version>1.13.0</Version>
+		<Version>1.14.0</Version>
 		<PackageIcon>NuGet-64x64.png</PackageIcon>
 		<LangVersion>latest</LangVersion>
 		<ImplicitUsings>enable</ImplicitUsings>
@@ -37,7 +37,7 @@
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.RazorPages" Version="2.2.5" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.2.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Razor.Runtime" Version="2.2.0" />
-		<PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Options" Version="7.0.1" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
 	</ItemGroup>
 
