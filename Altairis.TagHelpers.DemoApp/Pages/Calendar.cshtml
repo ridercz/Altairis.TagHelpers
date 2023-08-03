@@ -3,14 +3,37 @@
 
 <h2>CalendarTagHelper</h2>
 
+<h2>Without settings</h2>
 <calendar class="calendar"
-            date-begin="new DateTime(2020, 4, 1)"
-            date-end="new DateTime(2020, 4, 30)"
-            day-name-style="Full"
-            events="this.Model.Events"
-            general-date-format="d."
-            new-month-date-format="d. MMMM"
-            selected-days="this.Model.SelectedDays"></calendar>
+          date-begin="new DateTime(2020, 4, 1)"
+          date-end="new DateTime(2020, 4, 30)"
+          day-name-style="Full"
+          events="this.Model.Events"
+          general-date-format="d."
+          new-month-date-format="d. MMMM"
+          selected-days="this.Model.SelectedDays"></calendar>
+
+<h2>Including weekend</h2>
+<calendar class="calendar"
+          date-begin="new DateTime(2020, 4, 1)"
+          date-end="new DateTime(2020, 4, 30)"
+          day-name-style="Full"
+          events="this.Model.Events"
+          general-date-format="d."
+          new-month-date-format="d. MMMM"
+          selected-days="this.Model.SelectedDays"
+          include-weekend="true"></calendar>
+
+<h2>Without weekend</h2>
+<calendar class="calendar"
+          date-begin="new DateTime(2020, 4, 1)"
+          date-end="new DateTime(2020, 4, 30)"
+          day-name-style="Full"
+          events="this.Model.Events"
+          general-date-format="d."
+          new-month-date-format="d. MMMM"
+          selected-days="this.Model.SelectedDays"
+          include-weekend="false"></calendar>
 
 @section Head {
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">

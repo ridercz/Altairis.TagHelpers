@@ -3,12 +3,12 @@ using Altairis.Services.DateProvider;
 
 namespace Altairis.TagHelpers;
 
-    [HtmlTargetElement("calendar")]
-    public class CalendarTagHelper : TagHelper {
-        private readonly CultureInfo culture = CultureInfo.CurrentCulture;
-        private readonly IDateProvider dateProvider;
-        private DateTime realDateBegin;
-        private DateTime realDateEnd;
+[HtmlTargetElement("calendar")]
+public class CalendarTagHelper : TagHelper {
+    private readonly CultureInfo culture = CultureInfo.CurrentCulture;
+    private readonly IDateProvider dateProvider;
+    private DateTime realDateBegin;
+    private DateTime realDateEnd;
 
     // Constructor
 
@@ -31,6 +31,8 @@ namespace Altairis.TagHelpers;
     public string GeneralDateFormat { get; set; } = "d.";
 
     public string NewMonthDateFormat { get; set; } = "d. MMMM";
+
+    public bool IncludeWeekend { get; set; } = true;
 
     // Main process method
 
@@ -63,10 +65,16 @@ namespace Altairis.TagHelpers;
 
     // Helper HTML content generating methods
 
+    private bool IsWeekend(DateTime d) => (d.DayOfWeek == DayOfWeek.Saturday) || (d.DayOfWeek == DayOfWeek.Sunday);
+
     private IHtmlContent GenerateHeader() {
         var headerBuilder = new TagBuilder("header");
         for (var i = 0; i < 7; i++) {
             var d = this.realDateBegin.AddDays(i);
+
+            if (!IncludeWeekend && IsWeekend(d))    //skip weekend
+                continue;
+
             var dayName = this.DayNameStyle switch {
                 DayNameStyle.Shortest => this.culture.DateTimeFormat.GetShortestDayName(d.DayOfWeek),
                 DayNameStyle.Abbreviated => this.culture.DateTimeFormat.GetAbbreviatedDayName(d.DayOfWeek),
@@ -90,6 +98,10 @@ namespace Altairis.TagHelpers;
 
         for (var i = 0; i < 7; i++) {
             var d = firstDay.AddDays(i);
+
+            if (!IncludeWeekend && IsWeekend(d))    //skip weekend
+                continue;
+
             weekBuilder.InnerHtml.AppendLine();
             weekBuilder.InnerHtml.AppendHtml(this.GenerateDay(d));
         }
