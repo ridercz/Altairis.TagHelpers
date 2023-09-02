@@ -153,7 +153,7 @@ public class CalendarTagHelper : TagHelper {
             if (!string.IsNullOrEmpty(e.Description)) eventBuilder.Attributes.Add("title", e.Description);
             if (!string.IsNullOrEmpty(e.CssClass)) eventBuilder.AddCssClass(e.CssClass);
 
-            if (!string.IsNullOrEmpty(e.BackgroundColor) || !string.IsNullOrEmpty(e.BackgroundColor)) {
+            if (!string.IsNullOrEmpty(e.BackgroundColor) || !string.IsNullOrEmpty(e.ForegroundColor)) {
                 var style = string.Empty;
                 if (!string.IsNullOrEmpty(e.BackgroundColor)) style += $"background-color:{e.BackgroundColor};";
                 if (!string.IsNullOrEmpty(e.ForegroundColor)) style += $"color:{e.ForegroundColor};";
