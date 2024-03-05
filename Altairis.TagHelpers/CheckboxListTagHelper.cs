@@ -13,6 +13,8 @@ public class CheckboxListTagHelper : TagHelper {
 
     public CheckboxListControlType ControlType { get; set; } = CheckboxListControlType.CheckBox;
 
+    public bool AllowHtml { get; set; } = false;
+
     public override void Process(TagHelperContext context, TagHelperOutput output) {
         base.Process(context, output);
 
@@ -60,7 +62,11 @@ public class CheckboxListTagHelper : TagHelper {
             // Create label
             var label = new TagBuilder("label");
             label.Attributes.Add("for", fieldId);
-            label.InnerHtml.Append(items[i].Text);
+            if (!this.AllowHtml) {
+                label.InnerHtml.Append(items[i].Text);
+            } else {
+                label.InnerHtml.AppendHtml(items[i].Text);
+            }
 
             // Create list item with contents
             var li = new TagBuilder("li");
