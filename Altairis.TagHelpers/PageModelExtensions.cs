@@ -30,7 +30,8 @@ public static class PageModelExtensions {
 
         // Copy ambient values
         foreach (var key in page.RouteData.Values.Keys) {
-            if (!newRouteValues.ContainsKey(key)) newRouteValues[key] = page.RouteData.Values[key];
+            var value = page.RouteData.Values[key];
+            if (!newRouteValues.ContainsKey(key) && value != null) newRouteValues[key] = value;
         }
 
         // Call original method

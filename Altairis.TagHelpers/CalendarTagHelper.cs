@@ -124,7 +124,8 @@ public class CalendarTagHelper(TimeProvider? dateProvider = null) : TagHelper {
         dayHeaderBuilder.Attributes.Add("data-dow", dayName);
 
         // Add day events
-        dayBuilder.InnerHtml.AppendHtml(this.GenerateDayEvents(day));
+        var dayEvents = this.GenerateDayEvents(day);
+        if (dayEvents != null) dayBuilder.InnerHtml.AppendHtml(dayEvents);
         return dayBuilder;
     }
 
@@ -180,7 +181,7 @@ public class CalendarTagHelper(TimeProvider? dateProvider = null) : TagHelper {
 
             var liContent = new TagBuilder(string.IsNullOrEmpty(e.Href) ? "span" : "a");
             if (!string.IsNullOrEmpty(e.Href)) liContent.Attributes.Add("href", e.Href);
-            liContent.InnerHtml.AppendHtml(e.Name);
+            liContent.InnerHtml.AppendHtml(e.Name ?? string.Empty);
             eventBuilder.InnerHtml.AppendHtml(liContent);
             eventListBuilder.InnerHtml.AppendHtml(eventBuilder);
         }
