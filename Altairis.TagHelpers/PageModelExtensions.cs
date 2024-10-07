@@ -23,7 +23,8 @@ public static class PageModelExtensions {
         var newRouteValues = new Dictionary<string, object>();
         if (routeValues != null) {
             foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(routeValues)) {
-                newRouteValues.Add(descriptor.Name, descriptor.GetValue(routeValues));
+                var value = descriptor.GetValue(routeValues);
+                if (value != null) newRouteValues.Add(descriptor.Name, value);
             }
         }
 

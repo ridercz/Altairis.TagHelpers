@@ -4,13 +4,9 @@ using System.Web;
 
 namespace Altairis.TagHelpers;
 
-public class DicebearAvatarTagHelper : TagHelper {
+public class DicebearAvatarTagHelper(IOptions<DicebearAvatarOptions> options) : TagHelper {
 
-    private readonly DicebearAvatarOptions options;
-
-    public DicebearAvatarTagHelper(IOptions<DicebearAvatarOptions> options) {
-        this.options = options.Value ?? new();
-    }
+    private readonly DicebearAvatarOptions options = options.Value ?? new();
 
     // Seed
 

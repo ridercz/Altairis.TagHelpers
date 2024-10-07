@@ -3,14 +3,9 @@
 namespace Altairis.TagHelpers;
 
 [HtmlTargetElement("time", Attributes = "value")]
-public class TimeTagHelper : TagHelper {
-    private readonly TimeTagHelperOptions options;
-    private readonly IDateProvider dateProvider;
-
-    public TimeTagHelper(IOptions<TimeTagHelperOptions>? optionsAccessor = null, IDateProvider? dateProvider = null) {
-        this.options = optionsAccessor?.Value ?? new TimeTagHelperOptions();
-        this.dateProvider = dateProvider ?? new LocalDateProvider();
-    }
+public class TimeTagHelper(IOptions<TimeTagHelperOptions>? optionsAccessor = null, IDateProvider? dateProvider = null) : TagHelper {
+    private readonly TimeTagHelperOptions options = optionsAccessor?.Value ?? new TimeTagHelperOptions();
+    private readonly IDateProvider dateProvider = dateProvider ?? new LocalDateProvider();
 
     public DateTime? Value { get; set; }
 

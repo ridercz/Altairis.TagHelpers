@@ -1,12 +1,8 @@
 ﻿namespace Altairis.TagHelpers;
 
 [HtmlTargetElement("editor", Attributes = "asp-for")]
-public class EditorTagHelper : TagHelper {
-    private readonly IHtmlHelper htmlHelper;
-
-    public EditorTagHelper(IHtmlHelper htmlHelper) {
-        this.htmlHelper = htmlHelper ?? throw new ArgumentNullException(nameof(htmlHelper));
-    }
+public class EditorTagHelper(IHtmlHelper htmlHelper) : TagHelper {
+    private readonly IHtmlHelper htmlHelper = htmlHelper ?? throw new ArgumentNullException(nameof(htmlHelper));
 
     [HtmlAttributeName("asp-for")]
     public ModelExpression For { get; set; } = null!;

@@ -11,7 +11,7 @@
 [HtmlTargetElement("aa", Attributes = RouteAttributeName)]
 [HtmlTargetElement("aa", Attributes = RouteValuesDictionaryName)]
 [HtmlTargetElement("aa", Attributes = RouteValuesPrefix + "*")]
-public class AmbientAnchorTagHelper : AnchorTagHelper {
+public class AmbientAnchorTagHelper(IHtmlGenerator generator) : AnchorTagHelper(generator) {
     private const string ActionAttributeName = "asp-action";
     private const string ControllerAttributeName = "asp-controller";
     private const string AreaAttributeName = "asp-area";
@@ -23,8 +23,6 @@ public class AmbientAnchorTagHelper : AnchorTagHelper {
     private const string RouteAttributeName = "asp-route";
     private const string RouteValuesDictionaryName = "asp-all-route-data";
     private const string RouteValuesPrefix = "asp-route-";
-
-    public AmbientAnchorTagHelper(IHtmlGenerator generator) : base(generator) { }
 
     public override void Process(TagHelperContext context, TagHelperOutput output) {
         // Make classic anchor tag

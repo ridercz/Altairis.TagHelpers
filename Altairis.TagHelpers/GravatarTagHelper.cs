@@ -3,12 +3,8 @@ using System.Text;
 
 namespace Altairis.TagHelpers;
 
-public class GravatarTagHelper : TagHelper {
-    private readonly GravatarOptions options;
-
-    public GravatarTagHelper(IOptions<GravatarOptions> options) {
-        this.options = options.Value ?? new();
-    }
+public class GravatarTagHelper(IOptions<GravatarOptions> options) : TagHelper {
+    private readonly GravatarOptions options = options.Value ?? new();
 
     public string Email { get; set; } = string.Empty;
 
@@ -46,7 +42,7 @@ public class GravatarTagHelper : TagHelper {
 
         // Add optional parameters
         if (this.Size != GravatarOptions.DefaultSize) sb.Append($"s={this.Size}&");
-        if (this.Rating != GravatarOptions.DefaultRating) sb.Append($"r={this.Rating.ToString().ToLowerInvariant()}&");
+        if (this.Rating != null && this.Rating != GravatarOptions.DefaultRating) sb.Append($"r={this.Rating.ToString()!.ToLowerInvariant()}&");
         if (!string.IsNullOrWhiteSpace(this.DefaultImage)) sb.Append($"d={this.DefaultImage}&");
         if (this.ForceDefault == true) sb.Append("f=y&");
 
@@ -58,8 +54,7 @@ public class GravatarTagHelper : TagHelper {
     private string GetEmailHash() {
         var email = this.Email.Trim().ToLowerInvariant();
         var emailBytes = Encoding.ASCII.GetBytes(email);
-        using var md5 = MD5.Create();
-        var hashBytes = md5.ComputeHash(emailBytes);
+        var hashBytes = MD5.HashData(emailBytes);
         var hashString = string.Join(string.Empty, hashBytes.Select(b => b.ToString("x2")));
         return hashString;
     }

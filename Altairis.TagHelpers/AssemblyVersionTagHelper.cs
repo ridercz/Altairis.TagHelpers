@@ -10,8 +10,10 @@ public class AssemblyVersionTagHelper : TagHelper {
     public string TimeFormat { get; set; } = "g";
 
     public override void Process(TagHelperContext context, TagHelperOutput output) {
-        var version = System.Reflection.Assembly.GetEntryAssembly().GetName().Version;
         output.TagName = string.Empty;
+
+        var version = System.Reflection.Assembly.GetEntryAssembly()?.GetName().Version;
+        if (version == null) return;
 
         switch (this.Display) {
             case AssemblyVersionDisplayStyle.BuildTime:

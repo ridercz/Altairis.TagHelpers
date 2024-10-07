@@ -30,14 +30,13 @@ public class RolesTagHelper : TagHelper {
     }
 
     private static bool MatchRoles(ClaimsPrincipal principal, string roleString) {
-        if (principal == null) throw new ArgumentNullException(nameof(principal));
-        if (roleString == null) throw new ArgumentNullException(nameof(roleString));
         if (string.IsNullOrWhiteSpace(roleString)) throw new ArgumentException("Value cannot be empty or whitespace only string.", nameof(roleString));
 
+        var identity = principal.Identity ?? throw new NotSupportedException("The ClaimsPrincipal.Identity is null.");
         var roles = roleString.Split(',').Select(x => x.Trim());
         foreach (var role in roles) {
-            if (role == "?" && !principal.Identity.IsAuthenticated) return true;
-            if (role == "*" && principal.Identity.IsAuthenticated) return true;
+            if (role == "?" && !identity.IsAuthenticated) return true;
+            if (role == "*" && identity.IsAuthenticated) return true;
             if (principal.IsInRole(role)) return true;
         }
         return false;

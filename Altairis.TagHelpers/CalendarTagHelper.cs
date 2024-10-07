@@ -4,17 +4,11 @@ using Altairis.Services.DateProvider;
 namespace Altairis.TagHelpers;
 
 [HtmlTargetElement("calendar")]
-public class CalendarTagHelper : TagHelper {
+public class CalendarTagHelper(IDateProvider? dateProvider = null) : TagHelper {
     private readonly CultureInfo culture = CultureInfo.CurrentCulture;
-    private readonly IDateProvider dateProvider;
+    private readonly IDateProvider dateProvider = dateProvider ?? new LocalDateProvider();
     private DateTime realDateBegin;
     private DateTime realDateEnd;
-
-    // Constructor
-
-    public CalendarTagHelper(IDateProvider? dateProvider = null) {
-        this.dateProvider = dateProvider ?? new LocalDateProvider();
-    }
 
     // Configuration properties
 
