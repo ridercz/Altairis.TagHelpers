@@ -17,9 +17,9 @@ public class CalendarTagHelper(TimeProvider? dateProvider = null) : TagHelper {
 
     public DayNameStyle DayNameStyle { get; set; } = DayNameStyle.Full;
 
-    public IEnumerable<CalendarEvent> Events { get; set; } = new HashSet<CalendarEvent>();
+    public IEnumerable<CalendarEvent> Events { get; set; } = [];
 
-    public IEnumerable<DateTime> SelectedDays { get; set; } = new HashSet<DateTime>();
+    public IEnumerable<DateTime> SelectedDays { get; set; } = [];
 
     public string GeneralDateFormat { get; set; } = "d.";
 
@@ -58,9 +58,9 @@ public class CalendarTagHelper(TimeProvider? dateProvider = null) : TagHelper {
 
     // Helper HTML content generating methods
 
-    private bool IsWeekend(DateTime d) => (d.DayOfWeek == DayOfWeek.Saturday) || (d.DayOfWeek == DayOfWeek.Sunday);
+    private static bool IsWeekend(DateTime d) => (d.DayOfWeek == DayOfWeek.Saturday) || (d.DayOfWeek == DayOfWeek.Sunday);
 
-    private IHtmlContent GenerateHeader() {
+    private TagBuilder GenerateHeader() {
         var headerBuilder = new TagBuilder("header");
         for (var i = 0; i < 7; i++) {
             var d = this.realDateBegin.AddDays(i);
@@ -83,7 +83,7 @@ public class CalendarTagHelper(TimeProvider? dateProvider = null) : TagHelper {
         return headerBuilder;
     }
 
-    private IHtmlContent GenerateWeek(DateTime firstDay) {
+    private TagBuilder GenerateWeek(DateTime firstDay) {
         var weekBuilder = new TagBuilder("section");
         weekBuilder.Attributes.Add("class", "week");
         weekBuilder.Attributes.Add("data-week-number", this.culture.Calendar.GetWeekOfYear(firstDay, CalendarWeekRule.FirstDay, this.culture.DateTimeFormat.FirstDayOfWeek).ToString());
@@ -128,7 +128,7 @@ public class CalendarTagHelper(TimeProvider? dateProvider = null) : TagHelper {
         return dayBuilder;
     }
 
-    private IHtmlContent? GenerateDayEvents(DateTime day) {
+    private TagBuilder? GenerateDayEvents(DateTime day) {
         static bool isBetween(DateTime value, DateTime begin, DateTime end) {
             return value.Date >= begin.Date && value.Date <= end.Date;
         }

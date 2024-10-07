@@ -3,7 +3,7 @@
 [HtmlTargetElement("input", Attributes = "items")]
 public class DatalistTagHelper : TagHelper {
 
-    public IEnumerable<string> Items { get; set; } = new HashSet<string>();
+    public IEnumerable<string> Items { get; set; } = [];
 
     public string DatalistId { get; set; } = string.Empty;
 

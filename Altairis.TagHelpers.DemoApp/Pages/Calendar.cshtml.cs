@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace Altairis.TagHelpers.DemoApp.Pages;
 
 public class CalendarModel : PageModel {
-    public ICollection<CalendarEvent> Events { get; set; } = new List<CalendarEvent>();
+    public ICollection<CalendarEvent> Events { get; set; } = [];
 
-    public ICollection<DateTime> SelectedDays { get; set; } = new List<DateTime>();
+    public ICollection<DateTime> SelectedDays { get; set; } = [];
 
     public void OnGet() {
         // Full day events

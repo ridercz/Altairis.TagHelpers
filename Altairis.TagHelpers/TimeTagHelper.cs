@@ -26,7 +26,7 @@ public class TimeTagHelper(IOptions<TimeTagHelperOptions>? optionsAccessor = nul
             // Value is not specified
             output.Content.SetContent(this.NullText ?? this.options.NullDateFormatter());
         } else {
-            string formatValue(DateTime value, string? fixedFormat, Func<DateTime, string> configuredFormat) {
+            static string formatValue(DateTime value, string? fixedFormat, Func<DateTime, string> configuredFormat) {
                 return string.IsNullOrEmpty(fixedFormat) ? configuredFormat(value) : string.Format(fixedFormat, value);
             }
 

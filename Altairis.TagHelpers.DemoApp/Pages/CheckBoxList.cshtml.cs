@@ -14,7 +14,7 @@ public class CheckBoxListModel : PageModel {
 
     public class InputModel {
 
-        public ICollection<int> CheckboxSelectedValues { get; set; } = new List<int>();
+        public ICollection<int> CheckboxSelectedValues { get; set; } = [];
 
         public string? RadioSelectedValue { get; set; }
 
