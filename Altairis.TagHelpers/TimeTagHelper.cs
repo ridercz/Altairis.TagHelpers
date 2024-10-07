@@ -1,11 +1,9 @@
-﻿using Altairis.Services.DateProvider;
-
-namespace Altairis.TagHelpers;
+﻿namespace Altairis.TagHelpers;
 
 [HtmlTargetElement("time", Attributes = "value")]
-public class TimeTagHelper(IOptions<TimeTagHelperOptions>? optionsAccessor = null, IDateProvider? dateProvider = null) : TagHelper {
+public class TimeTagHelper(IOptions<TimeTagHelperOptions>? optionsAccessor = null, TimeProvider? dateProvider = null) : TagHelper {
     private readonly TimeTagHelperOptions options = optionsAccessor?.Value ?? new TimeTagHelperOptions();
-    private readonly IDateProvider dateProvider = dateProvider ?? new LocalDateProvider();
+    private readonly TimeProvider dateProvider = dateProvider ?? TimeProvider.System;
 
     public DateTime? Value { get; set; }
 
@@ -47,11 +45,11 @@ public class TimeTagHelper(IOptions<TimeTagHelperOptions>? optionsAccessor = nul
 
             // Set content if not present
             if (output.Content.IsEmptyOrWhiteSpace) {
-                if (dateValue.Date == this.dateProvider.Today) {
+                if (dateValue.Date == this.dateProvider.GetLocalNow().Date) {
                     output.Content.SetContent(formatValue(dateValue, this.TodayFormat, this.options.TodayDateFormatter));
-                } else if (dateValue.Date == this.dateProvider.Today.AddDays(-1)) {
+                } else if (dateValue.Date == this.dateProvider.GetLocalNow().Date.AddDays(-1)) {
                     output.Content.SetContent(formatValue(dateValue, this.YesterdayFormat, this.options.YesterdayDateFormatter));
-                } else if (dateValue.Date == this.dateProvider.Today.AddDays(1)) {
+                } else if (dateValue.Date == this.dateProvider.GetLocalNow().Date.AddDays(1)) {
                     output.Content.SetContent(formatValue(dateValue, this.TomorrowFormat, this.options.TomorrowDateFormatter));
                 } else {
                     output.Content.SetContent(formatValue(dateValue, this.GeneralFormat, this.options.GeneralDateFormatter));

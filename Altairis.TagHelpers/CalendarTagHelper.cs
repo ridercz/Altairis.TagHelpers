@@ -1,12 +1,11 @@
 ﻿using System.Globalization;
-using Altairis.Services.DateProvider;
 
 namespace Altairis.TagHelpers;
 
 [HtmlTargetElement("calendar")]
-public class CalendarTagHelper(IDateProvider? dateProvider = null) : TagHelper {
+public class CalendarTagHelper(TimeProvider? dateProvider = null) : TagHelper {
     private readonly CultureInfo culture = CultureInfo.CurrentCulture;
-    private readonly IDateProvider dateProvider = dateProvider ?? new LocalDateProvider();
+    private readonly TimeProvider dateProvider = dateProvider ?? TimeProvider.System;
     private DateTime realDateBegin;
     private DateTime realDateEnd;
 
@@ -106,7 +105,7 @@ public class CalendarTagHelper(IDateProvider? dateProvider = null) : TagHelper {
         var dayBuilder = new TagBuilder("article");
         if (day < this.DateBegin || day > this.DateEnd) dayBuilder.AddCssClass("extra");
         if (day.DayOfWeek == DayOfWeek.Saturday || day.DayOfWeek == DayOfWeek.Sunday) dayBuilder.AddCssClass("weekend");
-        if (day.Date == this.dateProvider.Today) dayBuilder.AddCssClass("today");
+        if (day.Date == this.dateProvider.GetLocalNow().Date) dayBuilder.AddCssClass("today");
         if (this.SelectedDays.Any(x => x.Date == day.Date)) dayBuilder.AddCssClass("selected");
 
         // Add date
