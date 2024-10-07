@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Razor.TagHelpers;
-
-namespace Altairis.TagHelpers;
+﻿namespace Altairis.TagHelpers;
 
 [HtmlTargetElement("aa", Attributes = ActionAttributeName)]
 [HtmlTargetElement("aa", Attributes = ControllerAttributeName)]
