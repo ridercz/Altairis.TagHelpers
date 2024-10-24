@@ -16,6 +16,8 @@ public class DicebearAvatarTagHelper(IOptions<DicebearAvatarOptions> options) : 
 
     // Configuration properties
 
+    public string? ApiEndpointBase { get; set; }
+
     public string? Sprites { get; set; }
 
     public bool? Flip { get; set; }
@@ -43,6 +45,7 @@ public class DicebearAvatarTagHelper(IOptions<DicebearAvatarOptions> options) : 
         base.Process(context, output);
 
         // Update local values with options
+        this.ApiEndpointBase ??= this.options.ApiEndpointBase;
         this.BackgroundColor ??= this.options.BackgroundColor;
         this.CustomParams ??= this.options.CustomParams;
         this.Flip ??= this.options.Flip;
@@ -70,7 +73,7 @@ public class DicebearAvatarTagHelper(IOptions<DicebearAvatarOptions> options) : 
 
     private string GetServiceUrl() {
         // Construct base URL
-        var sb = new StringBuilder($"https://avatars.dicebear.com/api/{this.Sprites}/{this.GetSeedHash()}.svg?");
+        var sb = new StringBuilder($"{this.ApiEndpointBase}{this.Sprites}/svg?seed={this.GetSeedHash()}");
 
         // Add optional parameters
         if (this.Flip == true) sb.Append("flip=true&");
@@ -83,8 +86,8 @@ public class DicebearAvatarTagHelper(IOptions<DicebearAvatarOptions> options) : 
         if (this.TranslateY >= -100 && this.TranslateY <= 100 && this.TranslateY != 0) sb.Append($"translateY={this.TranslateY}&");
         if (!string.IsNullOrWhiteSpace(this.CustomParams)) sb.Append(this.CustomParams);
 
-        // Remove trailing character
-        var url = sb.ToString().TrimEnd('?', '&');
+        // Remove trailing query string separator
+        var url = sb.ToString().TrimEnd('&');
         return url;
     }
 
@@ -113,6 +116,9 @@ public static class DicebearAvatarSprite {
 }
 
 public class DicebearAvatarOptions {
+
+    public string ApiEndpointBase { get; set; } = "https://api.dicebear.com/9.x/";
+
     public const int DefaultSize = 80;
 
     public bool HashSeed { get; set; } = true;
