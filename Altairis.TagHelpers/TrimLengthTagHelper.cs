@@ -17,7 +17,7 @@ public class TrimLengthTagHelper : TagHelper {
 
         if (content.Length > this.TrimLength) {
             if (context.AllAttributes["title"] == null) output.Attributes.Add("title", content);
-            output.Content.SetHtmlContent(WebUtility.HtmlEncode(content.Substring(0, this.TrimLength).TrimEnd(' ', '.', ',', '-', '(', ')')) + this.EllipsisText);
+            output.Content.SetHtmlContent(WebUtility.HtmlEncode(content[..this.TrimLength].TrimEnd(' ', '.', ',', '-', '(', ')')) + this.EllipsisText);
         }
     }
 
