@@ -93,9 +93,7 @@ public class DicebearAvatarTagHelper(IOptions<DicebearAvatarOptions> options) : 
 
     private string GetSeedHash() {
         if (this.HashSeed == false) return this.Seed;
-
-        using var sha = SHA256.Create();
-        var hash = sha.ComputeHash(Encoding.UTF8.GetBytes(this.Seed));
+        var hash = SHA256.HashData(Encoding.UTF8.GetBytes(this.Seed));
         var hashString = string.Join(string.Empty, hash.Select(x => x.ToString("X2")));
         return hashString;
     }
