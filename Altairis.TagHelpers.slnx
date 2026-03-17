@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="CODE_OF_CONDUCT.md" />
+    <File Path="LICENSE" />
+    <File Path="NuGet-64x64.png" />
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="Altairis.TagHelpers.DemoApp/Altairis.TagHelpers.DemoApp.csproj" />
+  <Project Path="Altairis.TagHelpers/Altairis.TagHelpers.csproj" />
+</Solution>
