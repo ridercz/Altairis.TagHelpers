@@ -6,5 +6,9 @@
   {
     "outputFile": "wwwroot/Styles/site.css",
     "inputFile": "wwwroot/Styles/site.scss"
+  },
+  {
+    "outputFile": "wwwroot/Styles/bar-chart.css",
+    "inputFile": "wwwroot/Styles/bar-chart.scss"
   }
 ]

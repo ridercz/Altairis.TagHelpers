@@ -1,0 +1,68 @@
+﻿@page
+@{
+    var randomValues = new int[5];
+    for (int i = 0; i < randomValues.Length; i++) {
+        randomValues[i] = System.Random.Shared.Next(0, 50);
+    }
+}
+<h2>Simple bar chart</h2>
+<bar-chart>
+    <bar label="Excellent" value="@randomValues[0]" />
+    <bar label="Very good" value="@randomValues[1]" />
+    <bar label="Good" value="@randomValues[2]" />
+    <bar label="Satisfactory" value="@randomValues[3]" />
+    <bar label="Fail" value="@randomValues[4]" />
+</bar-chart>
+<h2>Bar chart with custom colors</h2>
+<bar-chart>
+    <bar label="Red" value="30" color="#c00" />
+    <bar label="Green" value="10" color="#0c0" />
+    <bar label="Blue" value="20" color="#00c" />
+</bar-chart>
+<h2>Stacked bar chart</h2>
+<bar-chart stacked="true">
+    <bar label="Excellent" value="@randomValues[0]" />
+    <bar label="Very good" value="@randomValues[1]" />
+    <bar label="Good" value="@randomValues[2]" />
+    <bar label="Satisfactory" value="@randomValues[3]" />
+    <bar label="Fail" value="@randomValues[4]" />
+</bar-chart>
+<h2>Bar chart with labels and title</h2>
+<bar-chart show-labels="true">
+    <title>This is <b>some chart</b></title>
+    <bar label="Excellent" value="@randomValues[0]" />
+    <bar label="Very good" value="@randomValues[1]" />
+    <bar label="Good" value="@randomValues[2]" />
+    <bar label="Satisfactory" value="@randomValues[3]" />
+    <bar label="Fail" value="@randomValues[4]" />
+</bar-chart>
+<h2>Stacked bar chart with labels</h2>
+<bar-chart stacked show-labels="true">
+    <bar label="Excellent" value="@randomValues[0]" />
+    <bar label="Very good" value="@randomValues[1]" />
+    <bar label="Good" value="@randomValues[2]" />
+    <bar label="Satisfactory" value="@randomValues[3]" />
+    <bar label="Fail" value="@randomValues[4]" />
+</bar-chart>
+<h2>Bar chart with basic data table</h2>
+<bar-chart>
+    <data-table />
+    <bar label="Excellent" value="@randomValues[0]" />
+    <bar label="Very good" value="@randomValues[1]" />
+    <bar label="Good" value="@randomValues[2]" />
+    <bar label="Satisfactory" value="@randomValues[3]" />
+    <bar label="Fail" value="@randomValues[4]" />
+</bar-chart>
+<h2>Bar chart with custom data table</h2>
+<bar-chart>
+    <data-table total-text="Total" percent-format-string="0.0 %" />
+    <bar label="Excellent" value="@randomValues[0]" />
+    <bar label="Very good" value="@randomValues[1]" />
+    <bar label="Good" value="@randomValues[2]" />
+    <bar label="Satisfactory" value="@randomValues[3]" />
+    <bar label="Fail" value="@randomValues[4]" />
+</bar-chart>
+
+@section Head {
+    <link rel="stylesheet" href="~/Styles/bar-chart.css" />
+}

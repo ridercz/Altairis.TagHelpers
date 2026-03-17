@@ -1,0 +1,91 @@
+$BarColors: (#009900, #66cc00, #ddcc00, #cc6600, #cc0000);
+$BarHeight: 30px;
+$LabelFg: #000000;
+$LabelBg: rgba(255,255,255,0.25);
+$ChartBackground: #f5f5f5;
+$BorderColor: #ccc;
+
+figure.bar-chart {
+    background-color: $ChartBackground;
+    border: 1px solid $BorderColor;
+    box-sizing: border-box;
+    padding: 5px 10px;
+
+    figcaption {
+        text-align: center;
+        line-height: $BarHeight;
+    }
+
+    > div {
+        box-sizing: border-box;
+        height: $BarHeight;
+        line-height: $BarHeight;
+        margin: 5px 0;
+
+        label {
+            font-size: 80%;
+            padding: 3px;
+            border-radius: 3px;
+            margin-left: 10px;
+            background-color: $LabelBg;
+            color: $LabelFg;
+            line-height: $BarHeight;
+            overflow-x: visible;
+            white-space: nowrap;
+        }
+
+        /* Default colors on the parent bars; inline background-color on the div will override */
+        @for $i from 1 through length($BarColors) {
+            &:nth-of-type(#{$i}) {
+                background-color: nth($BarColors, $i);
+            }
+        }
+    }
+
+    aside {
+        label {
+            margin-right: 2ex;
+            line-height: $BarHeight;
+
+            span {
+                margin-right: 1ex;
+            }
+
+            @for $i from 1 through length($BarColors) {
+                &:nth-of-type(#{$i}) span {
+                    color: nth($BarColors, $i);
+                }
+            }
+        }
+    }
+
+    table {
+        margin: 0 auto;
+        font-size: 80%;
+
+        th {
+            text-align: left;
+
+            span {
+                margin-right: 1ex;
+            }
+        }
+
+        @for $i from 1 through length($BarColors) {
+            tr:nth-child(#{$i}) th span {
+                color: nth($BarColors, $i);
+            }
+        }
+
+        td {
+            text-align: right;
+            padding-left: 2ex;
+        }
+
+        tfoot {
+            td, th {
+                border-top: 1px solid $BorderColor;
+            }
+        }
+    }
+}
